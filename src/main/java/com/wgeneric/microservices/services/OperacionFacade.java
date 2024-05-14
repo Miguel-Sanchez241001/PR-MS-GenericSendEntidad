@@ -13,7 +13,13 @@ import com.wgeneric.microservices.services.interfaces.Operacion;
 public class OperacionFacade {
     private Operacion operacion;
 
-    public OperacionFacade(String protocolType) {
+    private String protocolType = "CONSULTA";
+    
+    public void setProtocolType(String protocolType) {
+    	this.protocolType = protocolType;
+    }
+    
+    public OperacionFacade() {
         if (protocolType.equalsIgnoreCase("CONSULTA")) {
             operacion = new Consulta();
         } else if (protocolType.equalsIgnoreCase("PAGO")) {
