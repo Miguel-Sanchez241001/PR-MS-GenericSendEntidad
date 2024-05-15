@@ -1,8 +1,11 @@
 package com.wgeneric.microservices.repositorios;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
- 
-public interface PlantillaRepo extends JpaRepository<PlantillaRepo, Integer> {
+import com.wgeneric.microservices.models.entidades.Plantilla;
+
+ @Repository
+public interface PlantillaRepo extends JpaRepository<Plantilla, Integer> {
 
 }
