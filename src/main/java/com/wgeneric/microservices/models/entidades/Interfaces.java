@@ -38,9 +38,9 @@ public class Interfaces {
 	    @JsonProperty(access = JsonProperty.Access.READ_ONLY)  // El id se incluye en las respuestas, no en las solicitudes
 	    private Integer id;
 
-	// Este campo es para recibir el ID de la entidad en el JSON
-	@Column(name = "f01_entidadId", insertable = false, updatable = false)
-	private Integer entidadId;
+		// Este campo es para recibir el ID de la entidad en el JSON
+		@Column(name = "f01_entidadId", insertable = false, updatable = false)
+		private Integer entidadId;
 
 	    @ManyToOne
 	    @JoinColumn(name = "f01_entidadId")
@@ -65,4 +65,16 @@ public class Interfaces {
 	    @OneToMany(mappedBy = "interfaces")
 	    @JsonProperty(access = JsonProperty.Access.READ_ONLY) 
 	    private List<Plantilla> plantillas;
+	    
+	    
+	    
+	    @OneToMany(mappedBy = "interfaces")
+	    @JsonProperty(access = JsonProperty.Access.READ_ONLY) 
+	    private List<Parametros> parametros;
+	    
+	    
+	    
+	    
+	    
+	    
 }

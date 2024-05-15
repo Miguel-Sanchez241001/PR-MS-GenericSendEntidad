@@ -40,11 +40,21 @@ public class Plantilla {
 	    @JsonProperty(access = JsonProperty.Access.READ_ONLY)  // El id se incluye en las respuestas, no en las solicitudes
 	    private Integer id;
 
+	 	
+	 	
+	 	
+	 	
 	    @JsonIgnore
 	    @ManyToOne
 	    @JoinColumn(name = "f02_interfazId")
 	    @ToString.Exclude
 	    private Interfaces interfaces;
+	    
+	    
+	    
+	    
+	    
+	    
 	    // Este campo es para recibir el ID de la entidad en el JSON
 	    @Column(name = "f02_interfazId", insertable = false, updatable = false)
 	    private Integer interfazId;
