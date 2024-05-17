@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.wgeneric.microservices.models.entidades.Entidad;
  
 @Repository
-public interface EntidadRepo  extends JpaRepository<Entidad, Integer> {
+public interface EntidadRepo  extends JpaRepository<Entidad, String> {
 
 }

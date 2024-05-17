@@ -1,22 +1,67 @@
 package com.wgeneric.microservices.services.imp.operaciones;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.wgeneric.microservices.models.comunicacion.RequestEntidad;
+import com.wgeneric.microservices.models.comunicacion.ResponseEntidad;
+import com.wgeneric.microservices.models.entidades.Entidad;
+import com.wgeneric.microservices.models.entidades.Interfaces;
+import com.wgeneric.microservices.models.entidades.Plantilla;
+import com.wgeneric.microservices.models.entidades.enums.PlantillaType;
 import com.wgeneric.microservices.models.multiservice.RequestMS;
 import com.wgeneric.microservices.models.multiservice.ResponseMS;
+import com.wgeneric.microservices.repositorios.EntidadRepo;
+import com.wgeneric.microservices.services.ComunicacionFacade;
+import com.wgeneric.microservices.services.TramaService;
 import com.wgeneric.microservices.services.interfaces.Operacion;
+import com.wgeneric.microservices.util.Constantes;
 
+@Service
 public class Consulta implements Operacion{
+
+    @Autowired
+    private TramaService tramaService;
+    @Autowired
+    private EntidadRepo entidadRepo;
+    @Autowired
+    private ComunicacionFacade comunicacionFacade;
+
 
     @Override
     public ResponseMS operacionEntidad(RequestMS requestMS) {
-        // TODO Auto-generated method stub
-    	
-    	
-    	
-    	
-    	
-    	
-    	
-        throw new UnsupportedOperationException("Unimplemented method 'operacionEntidad'");
+        ResponseMS responseMS  = new ResponseMS();
+    	if (requestMS.getCodoper()!= Constantes.COG_CONSULTA) {
+            // NO ES LA OPERACION CORRESPONDIENTE
+            
+        }else{
+            Entidad entidad = entidadRepo.findById(requestMS.getIdentidad()).get();
+            Interfaces interfaz =   entidad.getInterfaces().stream().filter(inter -> inter.getOperationType().toString() == requestMS.getCodoper())
+                                                                    .findFirst()
+                                                                    .orElse(null);
+
+              Plantilla plantilla = interfaz.getPlantillas().stream().filter(planti -> planti.getPlantillaType()==PlantillaType.REQUEST ) 
+                                                                        .findFirst()
+                                                                        .orElse(null);                                                     
+
+            RequestEntidad requestEntidad = tramaService.procesarTramaEnviarEntidad(requestMS.getBody(), plantilla.getDocType().toString());
+
+            comunicacionFacade.setComunicacionFacade(entidad.getType().toString());
+
+            ResponseEntidad respuestasEntidad = comunicacionFacade.sendRequest(requestEntidad);
+
+            ResponseEntidad responseEntidad = tramaService.procesarTramaEnviarHost(respuestasEntidad.getBody(), plantilla.getDocType().toString());
+
+            if (responseEntidad.getHttpCodigo()!= "200") {
+                // error solicitud 
+            }else{
+                responseMS.setCodigoRetorno("0000"); 
+                responseMS.setDesMensaje ("EXITO EN INVOCACION DE SERVICIO EXTERNO"); 
+                responseMS.setTramaRespuesta(responseEntidad.getBody());
+            }
+        }
+        return responseMS;
+    	 
     }
     
 }

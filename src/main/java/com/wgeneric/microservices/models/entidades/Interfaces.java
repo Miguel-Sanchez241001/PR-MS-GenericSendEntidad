@@ -40,7 +40,7 @@ public class Interfaces {
 
 		// Este campo es para recibir el ID de la entidad en el JSON
 		@Column(name = "f01_entidadId", insertable = false, updatable = false)
-		private Integer entidadId;
+		private String entidadId;
 
 	    @ManyToOne
 	    @JoinColumn(name = "f01_entidadId")
@@ -60,6 +60,17 @@ public class Interfaces {
 	     @Column(name = "f02_endpoint",nullable = false)
 	     //@Pattern(regexp = "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", message = "La URL debe ser válida y comenzar con http o https")
 	    private String endpoint;
+
+
+
+
+
+		@Column(name = "f02_timeout",nullable = false)
+		//@Pattern(regexp = "^(https?|ftp)://[^\\s/$.?#].[^\\s]*$", message = "La URL debe ser válida y comenzar con http o https")
+	   private Integer timeout;
+
+
+
 
 
 	    @OneToMany(mappedBy = "interfaces")
