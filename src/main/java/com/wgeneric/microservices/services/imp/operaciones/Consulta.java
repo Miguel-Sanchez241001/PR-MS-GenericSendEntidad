@@ -9,6 +9,13 @@ public class Consulta implements Operacion{
     @Override
     public ResponseMS operacionEntidad(RequestMS requestMS) {
         // TODO Auto-generated method stub
+    	
+    	
+    	
+    	
+    	
+    	
+    	
         throw new UnsupportedOperationException("Unimplemented method 'operacionEntidad'");
     }
     
