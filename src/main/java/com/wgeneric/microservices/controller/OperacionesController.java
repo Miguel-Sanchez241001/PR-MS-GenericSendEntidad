@@ -28,7 +28,7 @@ public class OperacionesController {
     @PostMapping("/consulta")
     public ResponseMS ConsultaEntidad(@RequestBody RequestMS entity) {
 
-         return operationsEntities.sendRequest(entity);    
+        return operationsEntities.sendRequest(entity);    
     }
     
     @PostMapping("/pago")

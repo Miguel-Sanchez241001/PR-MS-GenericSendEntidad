@@ -41,10 +41,10 @@ public class CamposTG {
     private String valor;
 
     @Column(name = "f04_posicion_inicial",nullable = false)
-    private String posicion_inicial;
+    private int posicion_inicial;
 
     @Column(name = "f04_posicion_final",nullable = false)
-    private String posicion_final;
+    private int posicion_final;
 
     @Column(name = "f04_dimension",nullable = false)
     private String dimension;

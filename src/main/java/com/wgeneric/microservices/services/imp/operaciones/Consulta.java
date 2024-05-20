@@ -35,7 +35,7 @@ public class Consulta implements Operacion{
 
 
     	if (requestMS.getCodoper()!= Constantes.COG_CONSULTA) {
-            // NO ES LA OPERACION CORRESPONDIENTE
+            //TODO: OPERACION NO ES CONSULTA RETORNAR 
             
         }else{
             Entidad entidad = entidadRepo.findById(requestMS.getIdentidad()).get();
@@ -45,13 +45,18 @@ public class Consulta implements Operacion{
 
               Plantilla plantilla = interfaz.getPlantillas().stream().filter(planti -> planti.getPlantillaType()==PlantillaType.REQUEST ) 
                                                                         .findFirst()
-                                                                        .orElse(null);                                                     
-              RequestEntidad requestEntidad = new RequestEntidad();
-              requestEntidad.setEntidad(entidad);
-              requestEntidad.setInterfaz(interfaz);
-              requestEntidad.setPlantilla(plantilla);
+                                                                        .orElse(null);    
+                                                                        
+                                                                        
+              RequestEntidad requestEntidad = RequestEntidad.builder()
+                                                            .entidad(entidad)
+                                                            .interfaz(interfaz)
+                                                            .plantilla(plantilla)
+                                                            .build();
+              
+            
 
-              requestEntidad = tramaService.procesarTramaEnviarEntidad(requestEntidad,requestMS.getBody());
+            requestEntidad = tramaService.procesarTramaEnviarEntidad(requestEntidad,requestMS.getBody());
 
             comunicacionFacade.setComunicacionFacade(entidad.getType().toString());
 

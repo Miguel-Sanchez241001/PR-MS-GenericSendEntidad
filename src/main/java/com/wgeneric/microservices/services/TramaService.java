@@ -17,9 +17,9 @@ public class TramaService {
         } 
         // Verificar si se asignó un adaptador válido
         if (adapter != null) {
-            return adapter.adaptarTramaBN(trama);
+            return adapter.adaptarTramaBN(requestEntidad.getPlantilla(), trama);
         } else {
-            throw new IllegalArgumentException("No se pudo encontrar un adaptador para el formato especificado");
+            return requestEntidad;
         }
     }
 
@@ -30,9 +30,9 @@ public class TramaService {
         } 
         // Verificar si se asignó un adaptador válido
         if (adapter != null) {
-            return adapter.adaptarTramaEntidad(trama);
+            return adapter.adaptarTramaEntidad(requestEntidad.getPlantilla(),trama);
         } else {
-            throw new IllegalArgumentException("No se pudo encontrar un adaptador para el formato especificado");
+            return new ResponseEntidad();
         }
     }
 }

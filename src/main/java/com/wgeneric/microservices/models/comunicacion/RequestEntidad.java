@@ -6,8 +6,10 @@ import com.wgeneric.microservices.models.entidades.Entidad;
 import com.wgeneric.microservices.models.entidades.Interfaces;
 import com.wgeneric.microservices.models.entidades.Plantilla;
 
+import lombok.Builder;
 import lombok.Data;
 @Data
+@Builder
 public class RequestEntidad {
     private Entidad entidad;
     private Interfaces interfaz;
