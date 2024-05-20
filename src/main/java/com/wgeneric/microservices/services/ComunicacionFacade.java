@@ -7,7 +7,7 @@ import com.wgeneric.microservices.models.comunicacion.ResponseEntidad;
 import com.wgeneric.microservices.services.imp.RestProtocol;
 import com.wgeneric.microservices.services.interfaces.CommunicationProtocol;
 
-@Service
+ 
 public class ComunicacionFacade {
         private CommunicationProtocol protocol;
 

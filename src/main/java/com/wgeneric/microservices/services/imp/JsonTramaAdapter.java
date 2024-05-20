@@ -6,16 +6,25 @@ import com.wgeneric.microservices.services.interfaces.TramaAdapter;
 
 public class JsonTramaAdapter implements TramaAdapter {
 
+    private RequestEntidad requestEntidad;
+    public JsonTramaAdapter(RequestEntidad requestEntidad) {
+        this.requestEntidad = requestEntidad;
+    }
+
     @Override
     public RequestEntidad adaptarTramaBN(String trama) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adaptarTramaBN'");
+        // TODO: LOGICA ADATAR TRAMAS DEL BN A ENTIDAD 
+        
+        
+
+
+
     }
 
     @Override
     public ResponseEntidad adaptarTramaEntidad(String trama) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'adaptarTramaEntidad'");
+        // TODO: LOGICA ADATAR TRAMAS DEL ENTIDAD BN 
+      throw new UnsupportedOperationException("Unimplemented method 'adaptarTramaEntidad'");
     }
 
   

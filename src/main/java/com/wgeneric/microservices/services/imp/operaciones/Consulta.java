@@ -24,13 +24,16 @@ public class Consulta implements Operacion{
     private TramaService tramaService;
     @Autowired
     private EntidadRepo entidadRepo;
-    @Autowired
-    private ComunicacionFacade comunicacionFacade;
+ 
 
 
     @Override
     public ResponseMS operacionEntidad(RequestMS requestMS) {
         ResponseMS responseMS  = new ResponseMS();
+        ComunicacionFacade comunicacionFacade = new ComunicacionFacade();
+
+
+
     	if (requestMS.getCodoper()!= Constantes.COG_CONSULTA) {
             // NO ES LA OPERACION CORRESPONDIENTE
             
@@ -43,14 +46,18 @@ public class Consulta implements Operacion{
               Plantilla plantilla = interfaz.getPlantillas().stream().filter(planti -> planti.getPlantillaType()==PlantillaType.REQUEST ) 
                                                                         .findFirst()
                                                                         .orElse(null);                                                     
+              RequestEntidad requestEntidad = new RequestEntidad();
+              requestEntidad.setEntidad(entidad);
+              requestEntidad.setInterfaz(interfaz);
+              requestEntidad.setPlantilla(plantilla);
 
-            RequestEntidad requestEntidad = tramaService.procesarTramaEnviarEntidad(requestMS.getBody(), plantilla.getDocType().toString());
+              requestEntidad = tramaService.procesarTramaEnviarEntidad(requestEntidad,requestMS.getBody());
 
             comunicacionFacade.setComunicacionFacade(entidad.getType().toString());
 
             ResponseEntidad respuestasEntidad = comunicacionFacade.sendRequest(requestEntidad);
 
-            ResponseEntidad responseEntidad = tramaService.procesarTramaEnviarHost(respuestasEntidad.getBody(), plantilla.getDocType().toString());
+            ResponseEntidad responseEntidad = tramaService.procesarTramaEnviarHost(requestEntidad,respuestasEntidad.getBody());
 
             if (responseEntidad.getHttpCodigo()!= "200") {
                 // error solicitud 

@@ -10,17 +10,11 @@ import com.wgeneric.microservices.services.interfaces.TramaAdapter;
 @Service
 public class TramaService {
 
-    public RequestEntidad procesarTramaEnviarEntidad(String trama, String formato) {
+    public RequestEntidad procesarTramaEnviarEntidad(RequestEntidad requestEntidad,String trama) {
         TramaAdapter adapter = null;
-        if (formato.equalsIgnoreCase("JSON")) {
-            adapter = new JsonTramaAdapter();
-        } else if (formato.equalsIgnoreCase("XML")) {
-            // adapter = new XmlTramaAdapter();
-        } else if (formato.equalsIgnoreCase("PROPIETARIO")) {
-            // adapter = new FormatoPropiertarioTramaAdapter();
-        } else {
-            adapter = new JsonTramaAdapter();
-        }
+        if (requestEntidad.getPlantilla().getDocType().toString().equalsIgnoreCase("JSON")) {
+            adapter = new JsonTramaAdapter(requestEntidad);
+        } 
         // Verificar si se asignó un adaptador válido
         if (adapter != null) {
             return adapter.adaptarTramaBN(trama);
@@ -29,17 +23,11 @@ public class TramaService {
         }
     }
 
-    public ResponseEntidad procesarTramaEnviarHost(String trama, String formato) {
+    public ResponseEntidad procesarTramaEnviarHost(RequestEntidad requestEntidad,String trama)  {
         TramaAdapter adapter = null;
-        if (formato.equalsIgnoreCase("JSON")) {
-            adapter = new JsonTramaAdapter();
-        } else if (formato.equalsIgnoreCase("XML")) {
-            // adapter = new XmlTramaAdapter();
-        } else if (formato.equalsIgnoreCase("PROPIETARIO")) {
-            // adapter = new FormatoPropiertarioTramaAdapter();
-        } else {
-            adapter = new JsonTramaAdapter();
-        }
+        if (requestEntidad.getPlantilla().getDocType().toString().equalsIgnoreCase("JSON")) {
+            adapter = new JsonTramaAdapter(requestEntidad);
+        } 
         // Verificar si se asignó un adaptador válido
         if (adapter != null) {
             return adapter.adaptarTramaEntidad(trama);
