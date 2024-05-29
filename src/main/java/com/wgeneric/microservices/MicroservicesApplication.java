@@ -15,7 +15,7 @@ public class MicroservicesApplication {
 	public GroupedOpenApi myApi() {
 		return GroupedOpenApi.builder()
 			.group("Multi Servicio")
-			.pathsToMatch("/api/v1/**","/entidad/**" )
+			.pathsToMatch("/api/**","/api/entidad/**" )
 			.build();
 	}
 }
