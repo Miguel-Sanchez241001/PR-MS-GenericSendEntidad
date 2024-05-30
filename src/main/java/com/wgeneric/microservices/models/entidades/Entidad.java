@@ -5,15 +5,10 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wgeneric.microservices.models.entidades.enums.ServiceType;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,18 +23,16 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Entidad {
-    
 
-
-
-    @Id
-     @Column(name = "f01_entidadId",nullable = false)
-  //  @JsonProperty(access = JsonProperty.Access.READ_ONLY)  // El id se incluye en las respuestas, no en las solicitudes
-    private String id;
+      @Id
+     @Column(name = "f01_entidadId", nullable = false, unique = true) // postgresql
+     @NotNull
+     @Size(min = 4, max = 4, message = "El ID debe tener exactamente 4 dígitos")
+     private String id;
 
     @Column(name = "f01_nombre",nullable = false)
     private String nombre;
-    
+
     
     @Column(name = "f01_descripcion",nullable = false)
     private String descripcion;

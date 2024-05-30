@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 
 import com.wgeneric.microservices.models.entidades.Interfaces;
 
- @Repository
-public interface InterfazRepo extends JpaRepository<Interfaces, Integer> {
+import java.util.List;
 
+@Repository
+public interface InterfazRepo extends JpaRepository<Interfaces, Integer> {
+ List<Interfaces> findByOperationType(String operador);
 }
