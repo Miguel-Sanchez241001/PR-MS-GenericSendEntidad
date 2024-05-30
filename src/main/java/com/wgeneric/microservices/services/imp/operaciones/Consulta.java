@@ -17,6 +17,8 @@ import com.wgeneric.microservices.services.TramaService;
 import com.wgeneric.microservices.services.interfaces.Operacion;
 import com.wgeneric.microservices.util.Constantes;
 
+import java.util.Objects;
+
 @Service
 public class Consulta implements Operacion{
 
@@ -34,7 +36,7 @@ public class Consulta implements Operacion{
 
 
 
-    	if (requestMS.getCodoper()!= Constantes.COG_CONSULTA) {
+    	if (!Objects.equals(requestMS.getCodoper(), Constantes.COG_CONSULTA)) {
             //TODO: OPERACION NO ES CONSULTA RETORNAR 
             
         }else{
