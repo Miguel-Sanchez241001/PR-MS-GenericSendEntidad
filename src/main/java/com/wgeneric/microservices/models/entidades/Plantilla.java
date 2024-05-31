@@ -34,16 +34,16 @@ import lombok.ToString;
 @Entity
 @Table(name = "f03_plantilla")
 public class Plantilla {
+
+
+
 	 	@Id
 	    @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name = "f03_plantillaId",nullable = false)
 	    @JsonProperty(access = JsonProperty.Access.READ_ONLY)  // El id se incluye en las respuestas, no en las solicitudes
 	    private Integer id;
 
-	 	
-	 	
-	 	
-	 	
+
 	    @JsonIgnore
 	    @ManyToOne
 	    @JoinColumn(name = "f02_interfazId")
