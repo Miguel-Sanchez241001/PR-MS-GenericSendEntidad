@@ -24,7 +24,7 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Entidad {
 
-      @Id
+     @Id
      @Column(name = "f01_entidadId", nullable = false, unique = true) // postgresql
      @NotNull
      @Size(min = 4, max = 4, message = "El ID debe tener exactamente 4 dígitos")
