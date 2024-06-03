@@ -9,6 +9,8 @@ import com.wgeneric.microservices.services.imp.operaciones.Extorno;
 import com.wgeneric.microservices.services.imp.operaciones.Pago;
 import com.wgeneric.microservices.services.interfaces.Operacion;
 
+import java.io.IOException;
+
 @Service
 public class OperacionFacade {
     private Operacion operacion;
@@ -29,7 +31,7 @@ public class OperacionFacade {
         }
     }
 
-    public ResponseMS sendRequest(RequestMS request) {
+    public ResponseMS sendRequest(RequestMS request) throws IOException, InterruptedException {
         return operacion.operacionEntidad(request);
     }
 

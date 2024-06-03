@@ -7,7 +7,9 @@ import com.wgeneric.microservices.models.comunicacion.ResponseEntidad;
 import com.wgeneric.microservices.services.imp.RestProtocol;
 import com.wgeneric.microservices.services.interfaces.CommunicationProtocol;
 
- 
+import java.io.IOException;
+
+
 public class ComunicacionFacade {
         private CommunicationProtocol protocol;
 
@@ -23,7 +25,7 @@ public class ComunicacionFacade {
         }
     }
 
-    public ResponseEntidad sendRequest(RequestEntidad request) {
+    public ResponseEntidad sendRequest(RequestEntidad request) throws IOException, InterruptedException {
        return protocol.sendRequest(request);
     }
 

@@ -32,5 +32,8 @@ public class Caracteristicas {
 	// Este campo es para recibir el ID de la entidad en el JSON
 	@Column(name = "f05_caracteristica_name"  )
 	private String caracteristica;
-	
+
+    public Caracteristicas(String security) {
+        this.caracteristica = security;
+    }
 }

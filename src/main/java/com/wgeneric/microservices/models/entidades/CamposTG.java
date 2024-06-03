@@ -10,11 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Entity
 @Table(name = "f04_campos")
@@ -23,6 +19,7 @@ import lombok.ToString;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class CamposTG {
 	
 	
@@ -37,8 +34,8 @@ public class CamposTG {
     @Column(name = "f04_ param_campo",nullable = false)
     private String  param_campo;
 
-    @Column(name = "f04_valor",nullable = false)
-    private String valor;
+    @Column(name = "f04_tipo_valor",nullable = false)
+    private String tipo_valor;
 
     @Column(name = "f04_posicion_inicial",nullable = false)
     private int posicion_inicial;
@@ -52,13 +49,13 @@ public class CamposTG {
     @Column(name = "f04_tipo_campo",nullable = false)
     private String tipo_campo;
 
-    @Column(name = "f04_valor_defecto",nullable = false)
+    @Column(name = "f04_valor_defecto")
     private String valor_defecto;
     
     
     
     // Este campo es para recibir el ID de la entidad en el JSON
-    @Column(name = "f02_interfazId", insertable = false, updatable = false)
+    @Column(name = "f03_plantillaId", insertable = false, updatable = false)
     private Integer plantilaId;
     
     

@@ -7,6 +7,7 @@ import com.wgeneric.microservices.models.entidades.Parametros;
 import com.wgeneric.microservices.repositorios.CaracteristicasRepo;
 import com.wgeneric.microservices.repositorios.InterfazRepo;
 import com.wgeneric.microservices.repositorios.ParametroRepo;
+import com.wgeneric.microservices.services.interfaces.CamposInt;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +31,7 @@ public class ParametrosController {
     public CaracteristicasRepo caracteristicasRepo;
 
 
+
     // Método para guardar un parámetro
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Parametros> guardarParametro(@Valid @RequestBody Parametros parametro) {
@@ -38,6 +40,9 @@ public class ParametrosController {
         Caracteristicas caracteristica = caracteristicasRepo.findById(parametro.getCaracteristicaId()).orElseThrow();
         parametro.setCaracteristicas(caracteristica);
         Parametros nuevoParametro = parametroRepo.save(parametro);
+
+
+
         return ResponseEntity.status(HttpStatus.OK).body(nuevoParametro);
     }
 

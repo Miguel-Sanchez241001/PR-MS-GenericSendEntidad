@@ -12,6 +12,8 @@ import com.wgeneric.microservices.services.OperacionFacade;
 
 import jakarta.annotation.PostConstruct;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/api/v1" )
 public class OperacionesController {
@@ -26,19 +28,19 @@ public class OperacionesController {
     }
 
     @PostMapping("/consulta")
-    public ResponseMS ConsultaEntidad(@RequestBody RequestMS entity) {
+    public ResponseMS ConsultaEntidad(@RequestBody RequestMS entity) throws IOException, InterruptedException {
 
         return operationsEntities.sendRequest(entity);    
     }
     
     @PostMapping("/pago")
-    public ResponseMS PagoEntidad(@RequestBody RequestMS entity) {
+    public ResponseMS PagoEntidad(@RequestBody RequestMS entity) throws IOException, InterruptedException {
         return operationsEntities.sendRequest(entity);    
 
     }
     
     @PostMapping("/extorno")
-    public ResponseMS ExtornoEntidad(@RequestBody RequestMS entity) {
+    public ResponseMS ExtornoEntidad(@RequestBody RequestMS entity) throws IOException, InterruptedException {
         return operationsEntities.sendRequest(entity);    
 
     }

@@ -43,6 +43,18 @@ public class JsonTramaAdapter implements TramaAdapter {
         }
 
 
+            // Convertir JsonNode a String
+            String jsonStringConverted = objectMapper.writeValueAsString(rootNode);
+
+            requestEntidad.setSolicitudEntidadArmada(jsonStringConverted);
+
+            // Convertir String a byte[]
+            byte[] jsonBytes = jsonStringConverted.getBytes();
+
+            requestEntidad.setSolicitudEntidad(jsonBytes);
+
+
+
 
 
         } catch (JsonProcessingException | UnsupportedEncodingException e) {
