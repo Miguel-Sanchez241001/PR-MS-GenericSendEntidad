@@ -8,10 +8,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 
 import java.util.List;
 
 @SpringBootApplication
+@ComponentScan({"com.wgeneric.microservices", "com.wgeneric.microservices.services.imp.operaciones"})
 public class MicroservicesApplication implements CommandLineRunner {
 	@Autowired
 	public CaracteristicasRepo caracteristicasRepo;

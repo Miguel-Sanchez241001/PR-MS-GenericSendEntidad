@@ -1,9 +1,11 @@
 package com.wgeneric.microservices.services.imp.operaciones;
 
 import com.wgeneric.microservices.models.entidades.*;
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import com.wgeneric.microservices.models.comunicacion.RequestEntidad;
@@ -21,13 +23,19 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-@Service
+@Component
 public class Consulta implements Operacion{
 
     @Autowired
-    public TramaService tramaService;
+    private  TramaService tramaService;
     @Autowired
-    public EntidadRepo entidadRepo;
+    private  EntidadRepo entidadRepo;
+
+
+    @PostConstruct
+    void init(){
+        System.out.println("INICIO Consulta ");
+    }
 
     private static final Logger logger = LoggerFactory.getLogger(Consulta.class);
 

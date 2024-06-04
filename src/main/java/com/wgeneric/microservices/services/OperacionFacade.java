@@ -1,5 +1,8 @@
 package com.wgeneric.microservices.services;
 
+import com.wgeneric.microservices.repositorios.EntidadRepo;
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wgeneric.microservices.models.multiservice.RequestMS;
@@ -16,14 +19,29 @@ public class OperacionFacade {
     private Operacion operacion;
 
     private String protocolType = "CONSULTA";
-    
+    @Autowired
+    private  TramaService tramaService;
+    @Autowired
+    private EntidadRepo entidadRepo;
+
+
+
+
     public void setProtocolType(String protocolType) {
     	this.protocolType = protocolType;
     }
-    
-    public OperacionFacade() {
+
+    @PostConstruct
+    void init(){
+        System.out.println("INICIO OperacionFacade");
+    }
+
+
+
+    @Autowired
+    public OperacionFacade(Consulta consulta) {
         if (protocolType.equalsIgnoreCase("CONSULTA")) {
-            operacion = new Consulta();
+            operacion = consulta;
         } else if (protocolType.equalsIgnoreCase("PAGO")) {
             operacion = new Pago();
         } else if (protocolType.equalsIgnoreCase("EXTORNO")) {
