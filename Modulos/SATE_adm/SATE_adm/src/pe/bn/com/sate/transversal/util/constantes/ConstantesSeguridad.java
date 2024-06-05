@@ -1,0 +1,34 @@
+package pe.bn.com.sate.transversal.util.constantes;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class ConstantesSeguridad {
+
+	/***
+	 * ACCESOS PARA EL USUARIO
+	 */
+
+	public static String ACCESO_TRAMITES = "ACCESO_TRAMITES";
+	public static String ACCESO_TRAMITES_AFILIAR_SERVICIO = "ACCESO_TRAMITES_AFILIAR_SERVICIO";
+	public static String ACCESO_TRAMITES_DESAFILIAR_SERVICIO = "ACCESO_TRAMITES_DESAFILIAR_SERVICIO";
+	public static String ACCESO_TRAMITES_ACTUALIZAR_REPRESENTANTE = "ACCESO_TRAMITES_ACTUALIZAR_REPRESENTANTE";
+	public static String ACCESO_CONSULTA = "ACCESO_CONSULTA";
+	public static String ACCESO_CONSULTA_EMPRESAS = "ACCESO_CONSULTA_EMPRESAS";
+	public static String ACCESO_CONSULTA_REPRESENTANTES = "ACCESO_CONSULTA_REPRESENTANTES";
+	public static String ACCESO_CONSULTA_USUARIOS = "ACCESO_CONSULTA_USUARIOS";
+
+	public final static Map<String, String> OPCION_ACC = new HashMap<String, String>() {
+		{
+			put("01S", ACCESO_TRAMITES);
+			put("02S", ACCESO_TRAMITES_AFILIAR_SERVICIO);
+			put("03S", ACCESO_TRAMITES_DESAFILIAR_SERVICIO);
+			put("04S", ACCESO_TRAMITES_ACTUALIZAR_REPRESENTANTE);
+			put("05S", ACCESO_CONSULTA);
+			put("06S", ACCESO_CONSULTA_EMPRESAS);
+			put("07S", ACCESO_CONSULTA_REPRESENTANTES);
+			put("08S", ACCESO_CONSULTA_USUARIOS);
+		}
+	};
+
+}

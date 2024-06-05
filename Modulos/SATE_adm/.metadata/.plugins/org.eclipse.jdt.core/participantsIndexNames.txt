@@ -1,0 +1,5 @@
+INDEX VERSION 1.126
+C:\Users\fgalvans\Desktop\SATE FINAL\Modulos\SATE_adm\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\520507111.index
+\SATE_adm\src
+C:\Users\fgalvans\Desktop\SATE FINAL\Modulos\SATE_adm\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\3951402340.index
+\SATE_ope\src

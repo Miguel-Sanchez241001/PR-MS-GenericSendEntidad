@@ -1,0 +1,17 @@
+OPTIONS (SKIP=1)
+LOAD DATA
+APPEND
+INTO TABLE BN_SATE.BNSATE14_TRANSACCION_HIS
+(
+b14_num_tarjeta POSITION(57:75),
+b14_fec_operacion POSITION(44:51) "TO_DATE(:b14_fec_operacion,'YYYYMMDD')",
+b14_fec_posteo POSITION(195:202) "TO_DATE(:b14_fec_posteo,'YYYYMMDD')",
+b14_operacion POSITION(123:152),
+b14_comercio POSITION(157:167),
+b14_monto POSITION(76:90) "TO_NUMBER(SUBSTR(:b14_monto,1,13)||'.'||SUBSTR(:b14_monto,14,2),'9999999999999.99')",
+b14_autorizacion_PMC POSITION(189:194),
+b14_num_autorizacion POSITION(182:188),
+b14_estado POSITION(1:1),
+b14_cuenta_cargo POSITION(168:181)
+)
+

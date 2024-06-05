@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<org.eclipse.jst.j2ee.commonarchivecore.looseconfig:LooseArchive xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:org.eclipse.jst.j2ee.commonarchivecore.looseconfig="commonarchive.looseconfig.xmi" uri="C:\Users\fgalvans\Desktop\SATE FINAL\Modulos\SATE_adm\SATE_admEAR" binariesPath="C:\Users\fgalvans\Desktop\SATE FINAL\Modulos\SATE_adm\SATE_admEAR" resourcesPath="C:\Users\fgalvans\Desktop\SATE FINAL\Modulos\SATE_adm\SATE_admEAR" archiveType="EAR">
+  <looseChildren uri="SATE_adm.war" binariesPath="C:\Users\fgalvans\Desktop\SATE FINAL\Modulos\SATE_adm\SATE_adm\WebContent" resourcesPath="C:\Users\fgalvans\Desktop\SATE FINAL\Modulos\SATE_adm\SATE_adm\WebContent" archiveType="WAR"/>
+</org.eclipse.jst.j2ee.commonarchivecore.looseconfig:LooseArchive>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>CONSULTAR USUARIOS</h2>
+
+		<h:form id="formConsultaUsuario">
+			<p:panel style="margin: 15px; padding:20px;">
+				<h:panelGrid style="width:100%;text-align:center;">
+					<p:panelGrid columns="2" style="margin:0 auto 10px;">
+						<h:outputText value="Periodo desde: *" />
+						<h:panelGroup>
+							<p:calendar locale="es" id="maskFI" readonlyInput="true"
+								requiredMessage="Seleccione una fecha inicial" required="true"
+								navigator="true"
+								value="#{consultarUsuarioController.consultarUsuarioModel.fechaInicio}"
+								pattern="dd/MM/yy" mask="true">
+								<p:ajax event="dateSelect" update=":formConsultaUsuario"
+									listener="#{consultarUsuarioController.consultarUsuarioModel.limpiarListaRepresentantes()}" />
+							</p:calendar>
+							<h:outputText value="hasta" style="margin:10px;" />
+							<p:calendar locale="es" id="maskFF" readonlyInput="true"
+								requiredMessage="Seleccione una fecha final" required="true"
+								value="#{consultarUsuarioController.consultarUsuarioModel.fechaFin}"
+								navigator="true" pattern="dd/MM/yy" mask="true">
+								<p:ajax event="dateSelect" update=":formConsultaUsuario"
+									listener="#{consultarUsuarioController.consultarUsuarioModel.limpiarListaRepresentantes()}" />
+							</p:calendar>
+						</h:panelGroup>
+
+						<h:outputText for="txtnumeroruc" value="N&uacute;mero de Ruc: " />
+						<h:panelGroup>
+							<p:inputText id="txtnumeroruc" styleClass="input-medio"
+								maxlength="11"
+								value="#{consultarUsuarioController.consultarUsuarioModel.ruc}"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								required="true"
+								requiredMessage="Ingrese un n&uacute;mero de ruc"
+								validatorMessage="Ruc invalido, cantidad de d&iacute;gitos debe ser 11">
+								<f:validateLength minimum="11" />
+							</p:inputText>
+							<p:commandButton id="seleccionarRepresentanteBtn"
+								style="margin-left:10px;" icon="ui-icon-search"
+								actionListener="#{consultarUsuarioController.buscarRepresentantes()}"
+								update=":formSeleccionarRepresentante"
+								onstart="PF('statusDialog').show()"
+								oncomplete="PF('statusDialog').hide();"
+								process="@this,maskFI,maskFF,txtnumeroruc" />
+						</h:panelGroup>
+
+						<h:outputText for="representante" value="Representante: " />
+						<h:panelGroup>
+							<p:inputText id="representante" styleClass="input-medio"
+								value="#{consultarUsuarioController.consultarUsuarioModel.representanteSeleccionado.nombreCompleto()}"
+								required="true" requiredMessage="Seleccione un representante"
+								disabled="true">
+							</p:inputText>
+
+						</h:panelGroup>
+					</p:panelGrid>
+
+					<p:commandButton id="buscarUsuariosBtn" value="Buscar"
+						styleClass="btnGrande" onstart="statusDialog.show();"
+						oncomplete="statusDialog.hide()"
+						process="@this, representante, maskFI, maskFF,txtnumeroruc"
+						actionListener="#{consultarUsuarioController.buscarUsuarios()}"
+						update=":formConsultaUsuario:tablaUsuario :formConsultaUsuario" />
+
+					<p:messages autoUpdate="true" id="msgs" showDetail="true"
+						showSummary="false" closable="true" />
+
+					<div class="dashed"></div>
+
+					<p:panelGrid id="pgExporter" columns="2"
+						style="float:right;margin-right:2px;">
+						<h:commandLink
+							rendered="#{consultarUsuarioController.consultarUsuarioModel.busquedaRealizada}">
+							<img
+								src="#{request.contextPath}/resources/img/plantillaBN/iconos/xls.gif" />
+							<p:dataExporter type="xls" target="tablaUsuario"
+								fileName="usuarios" pageOnly="true" />
+						</h:commandLink>
+					</p:panelGrid>
+					<p:dataTable id="tablaUsuario" paginator="true"
+						paginatorPosition="bottom" rows="5"
+						rendered="#{consultarUsuarioController.consultarUsuarioModel.busquedaRealizada}"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+									 {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+						currentPageReportTemplate="{currentPage} de {totalPages}"
+						rowsPerPageTemplate="5,10,15"
+						value="#{consultarUsuarioController.consultarUsuarioModel.listaUsuarios}"
+						var="usuario"
+						emptyMessage="No hay usuarios registrados con el representante seleccionado"
+						style="width:100%">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Tipo de documento" />
+							</f:facet>
+							<h:outputText
+								value="#{consultarUsuarioController.consultarUsuarioModel.tipoDocumentoLetras(usuario.tipoDocumento)}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Número de documento" />
+							</f:facet>
+							<h:outputText value="#{usuario.numeroDocumento}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Nombres" />
+							</f:facet>
+							<h:outputText value="#{usuario.nombreCompleto()}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Perfil" />
+							</f:facet>
+							<h:outputText value="#{usuario.usuarioPerfilDescripcion}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Correo" />
+							</f:facet>
+							<h:outputText value="#{usuario.correoLaboral}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Fecha de activación" />
+							</f:facet>
+							<h:outputText value="#{usuario.fechaActivacion}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy hh:mm:ss a" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Fecha de desactivación" />
+							</f:facet>
+							<h:outputText
+								value="#{usuario.fechaDesactivacion!=null?usuario.fechaDesactivacion:'--'}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy hh:mm:ss a" />
+							</h:outputText>
+						</p:column>
+
+						<p:column exportable="false">
+							<f:facet name="header">
+								<h:outputText value="Ver acciones" />
+							</f:facet>
+							<p:commandButton icon="ui-icon-search"
+								style="margin:auto;text-align:center;"
+								update=":formlistaActividades"
+								actionListener="#{consultarUsuarioController.buscarActividades(usuario.idUsuario,usuario.fechaActivacion,usuario.fechaDesactivacion)}"
+								onstart="PF('statusDialog').show();"
+								oncomplete="PF('statusDialog').hide();PF('listaActividadesWv').show()" />
+						</p:column>
+					</p:dataTable>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+		<p:dialog id="dialog-seleccionarRepresentante" modal="true"
+			header="Seleccionar Representante" draggable="false" showEffect="clip" hideEffect="clip"
+			resizable="false" widgetVar="SeleccionarRepresentanteWv"
+			position="center" onShow="SeleccionarRepresentanteWv.initPosition()"
+			closeOnEscape="true">
+			<h:form id="formSeleccionarRepresentante">
+				<p:panelGrid id="panel-seleccionarRepresentante" columns="1"
+					style="widht:100%">
+					<p:dataTable id="tablaRepresentantes"
+						value="#{consultarUsuarioController.consultarUsuarioModel.listaRepresentantes}"
+						selectionMode="single" var="representante" paginator="true"
+						paginatorPosition="bottom" rows="5"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+									 {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+						currentPageReportTemplate="{currentPage} de {totalPages}"
+						rowsPerPageTemplate="5,10,15"
+						rowKey="#{representante.numeroDocumento}"
+						emptyMessage="No hay representantes en esta empresa"
+						style="width:100%">
+						<p:ajax event="rowSelect"
+							listener="#{consultarUsuarioController.onRowSelect}"
+							update=":formConsultaUsuario"
+							oncomplete="PF('SeleccionarRepresentanteWv').hide()" />
+						<p:column headerText="Tipo documento"
+							style="widht:20%;text-align:center; vertical-align: middle;">
+							<h:outputText
+								value="#{consultarUsuarioController.consultarUsuarioModel.tipoDocumentoLetras(representante.tipoDocumento)}" />
+						</p:column>
+						<p:column headerText="Numero documento"
+							style="widht:30%;text-align:left; vertical-align: middle;">
+							<h:outputText value="#{representante.numeroDocumento}" />
+						</p:column>
+						<p:column headerText="Nombre completo"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText value="#{representante.nombreCompleto()}" />
+						</p:column>
+						<p:column headerText="Estado"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText value="#{representante.estado}" />
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="dialog-listaActividades" modal="true"
+			header="Lista de actividades" widgetVar="listaActividadesWv"
+			showEffect="clip" hideEffect="clip" resizable="false" position="center"
+			draggable="false" onShow="listaActividadesWv.initPosition()"
+			closeOnEscape="true">
+			<h:form id="formlistaActividades">
+				<p:panelGrid id="panel-listaActividades" columns="1"
+					style="widht:100%">
+					<p:dataTable id="tablaActividades"
+						value="#{consultarUsuarioController.consultarUsuarioModel.listaActividadesSeleccionada}"
+						var="actividad" paginator="true" paginatorPosition="bottom"
+						rows="5"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+									 {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+						currentPageReportTemplate="{currentPage} de {totalPages}"
+						rowsPerPageTemplate="5,10,15"
+						rowKey="#{representante.numeroDocumento}"
+						emptyMessage="No hay actividades realizadas por este usuario"
+						style="width:100%">
+
+						<p:column headerText="Accion"
+							style="widht:20%;text-align:center; vertical-align: middle;">
+							<h:outputText value="#{actividad.accion}" />
+						</p:column>
+						<p:column headerText="Funcionalidad accionada"
+							style="widht:30%;text-align:left; vertical-align: middle;">
+							<h:outputText value="#{actividad.funcionalidad}" />
+						</p:column>
+						<p:column headerText="Fecha"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText value="#{actividad.fecha}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy hh:mm:ss a" />
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Registro de cambios"
+							style="widht:50%; text-align:left;vertical-align: middle;">
+							<h:outputText value="#{actividad.registroCambios}" />
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+
+	</ui:define>
+</ui:composition>

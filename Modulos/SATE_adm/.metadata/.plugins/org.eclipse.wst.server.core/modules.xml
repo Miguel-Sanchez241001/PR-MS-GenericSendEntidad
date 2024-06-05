@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><modules>
+  <module moduleId="org.eclipse.jst.jee.server:SATE_ope" serverId="WebSphere Application Server v8.5 en localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:SATE_adm" serverId="WebSphere Application Server v8.5 en localhost"/>
+</modules>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<com.ibm.etools.webservice.wscbnd:ClientBinding xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:com.ibm.etools.webservice.wscbnd="http://www.ibm.com/websphere/appserver/schemas/5.0.2/wscbnd.xmi" xmi:id="ClientBinding_1534966458377">
+  <serviceRefs xmi:id="ServiceRef_1545536746440" serviceRefLink="service/AutenticaRegService">
+    <portQnameBindings xmi:id="PortQnameBinding_1545536746440" portQnameNamespaceLink="http://service.seguridad" portQnameLocalNameLink="AutenticaReg" overriddenEndpointURI="http://10.7.12.123:9080/WSClaveHost/services/AutenticaReg"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1545536836965" serviceRefLink="service/BducWebserviceService">
+    <portQnameBindings xmi:id="PortQnameBinding_1545536836965" portQnameNamespaceLink="http://webservice.bduc.bn.pe" portQnameLocalNameLink="BducWebservice" overriddenEndpointURI="http://10.7.12.73:80/WSInterfaceBduc/services/BducWebservice"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1545536925055" serviceRefLink="service/GatewayInterfaceService">
+    <portQnameBindings xmi:id="PortQnameBinding_1545536925055" portQnameNamespaceLink="http://interfaz.service.bn.pe" portQnameLocalNameLink="GatewayInterface" overriddenEndpointURI="http://10.7.12.64:9080/WSGatewayService/services/GatewayInterface"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1545536992749" serviceRefLink="service/ParametroInterfazKeyService">
+    <portQnameBindings xmi:id="PortQnameBinding_1545536992749" portQnameNamespaceLink="http://service.ws.comp.bn.com.pe" portQnameLocalNameLink="ParametroInterfazKey" overriddenEndpointURI="http://10.7.12.73:80/WSParamService12/services/ParametroInterfazKey"/>
+  </serviceRefs>
+  <serviceRefs xmi:id="ServiceRef_1545537034369" serviceRefLink="service/ServiceMessageService">
+    <portQnameBindings xmi:id="PortQnameBinding_1545537034369" portQnameNamespaceLink="http://service.open.ws.simm.bn.www" portQnameLocalNameLink="ServiceMessage" overriddenEndpointURI="http://10.7.12.73/WsSimm/services/ServiceMessage"/>
+  </serviceRefs>
+</com.ibm.etools.webservice.wscbnd:ClientBinding>

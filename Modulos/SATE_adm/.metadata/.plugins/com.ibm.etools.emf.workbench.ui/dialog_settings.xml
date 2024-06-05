@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="true" key="com.ibm.ws.ast.st.enhanced.ear.ui.internal.editor.SecuritySectionCommon"/>
+	<item value="true" key="com.ibm.ws.ast.st.enhanced.ear.ui.internal.editor.VirtualHostSectionCommon"/>
+	<item value="false" key="com.ibm.ws.ast.st.enhanced.ear.ui.internal.editor.AppDeploymentSectionCommon"/>
+	<item value="false" key="com.ibm.ws.ast.st.enhanced.ear.ui.internal.editor.LibrarySectionCommon"/>
+	<item value="false" key="com.ibm.ws.ast.st.enhanced.ear.ui.internal.editor.VariablesSectionCommon"/>
+	<item value="false" key="com.ibm.ws.ast.st.enhanced.ear.ui.internal.editor.DataSourceSectionCommon"/>
+	<item value="true" key="com.ibm.ws.ast.st.enhanced.ear.ui.internal.editor.J2CEmbeddedSectionCommon"/>
+</section>

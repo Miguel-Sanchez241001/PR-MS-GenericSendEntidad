@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="./CommonBaseEvents.xsl"?>
+<CommonBaseEvents>
+	<CommonBaseEvent creationTime="2019-08-03T20:15:58.809Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>5</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>13</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>WARNING</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>900</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>com.ibm.ws.util.ImplFactory</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogTokens value="com.ibm.ws.security.auth.ContextManagerImpl"/>
+			<msgCatalogTokens value="com.ibm.ws.security.auth.distContextManagerImpl"/>
+			<msgCatalogId>WSVR0072W</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ws.runtime.runtime</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:15:59.121Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>6</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>13</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>AUDIT</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>850</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>SASRas</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogId>security.LoadSCI</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ISecurityL13SupportImpl.sec</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:15:59.136Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>7</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>13</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>AUDIT</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>850</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>SASRas</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogId>security.GettingConfig</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ISecurityL13SupportImpl.sec</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:15:59.230Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>8</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>13</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>WARNING</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>900</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>com.ibm.ws.ssl.config.SSLConfig</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogId>ssl.default.password.in.use.CWPKI0041W</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ws.ssl.resources.ssl</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:15:59.246Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>9</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>13</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>INFO</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>800</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>com.ibm.ws.ssl.config.SSLConfigManager</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogId>ssl.disable.url.hostname.verification.CWPKI0027I</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ws.ssl.resources.ssl</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:15:59.261Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>10</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>13</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>AUDIT</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>850</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>SASRas</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogTokens value="BASICAUTH"/>
+			<msgCatalogId>security.AuthTarget</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ISecurityL13SupportImpl.sec</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:15:59.292Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>11</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>13</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>AUDIT</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>850</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>SASRas</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogId>security.ClientCSI</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ISecurityL13SupportImpl.sec</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:16:21.928Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>14</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>14</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>WARNING</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>900</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>com.ibm.ws.management.application.sync.AppBinaryProcessor</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogTokens value="java.lang.ClassNotFoundException: com.ibm.ws.security.authorize.AppInstallNotify&#xD;&#xA;&#x9;at java.lang.Class.forNameImpl(Native Method)&#xD;&#xA;&#x9;at java.lang.Class.forName(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.application.sync.AppBinaryProcessor.&lt;init&gt;(Unknown Source)&#xD;&#xA;&#x9;at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)&#xD;&#xA;&#x9;at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)&#xD;&#xA;&#x9;at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)&#xD;&#xA;&#x9;at java.lang.reflect.Constructor.newInstance(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.repository.FileRepository.initialize(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.repository.client.LocalConfigRepositoryClient.connect(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.websphere.management.repository.client.ConfigRepositoryClientFactory.getConfigRepositoryClient(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceMasterRepositoryAdapter.getRepository(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceMasterRepositoryAdapter.getDefaultRepository(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceMasterRepositoryAdapter.getDefaultMetaData(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceMasterRepositoryAdapter.getMetaData(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.metadata.RepositoryMetaDataFactory.getMetaData(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.metadata.RepositoryMetaDataFactory.getMetaData(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.configarchive.ConfigArchiveRepositoryAdapter.getDefaultMetaData(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.configarchive.ConfigArchiveRepositoryAdapter.getMetaData(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceImpl.getMetaData(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceImpl.getRootContextType(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceImpl.createRootContext(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceImpl.getRootContext(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceImpl.restore(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceManagerImpl.createWorkSpace(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.sm.workspace.impl.WorkSpaceManagerImpl.getWorkSpace(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.configarchive.ConfigArchiveComposer.loadConfigArchive(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.configarchive.ApplicationConfiguratorImpl.&lt;init&gt;(Unknown Source)&#xD;&#xA;&#x9;at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)&#xD;&#xA;&#x9;at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)&#xD;&#xA;&#x9;at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)&#xD;&#xA;&#x9;at java.lang.reflect.Constructor.newInstance(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.wsspi.configarchive.ApplicationConfigurator.getInstance(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.ast.st.enhanced.ear.internal.config.ApplicationConfiguratorModel.init(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.ast.st.enhanced.ear.internal.config.ApplicationConfiguratorModel.&lt;init&gt;(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.ast.st.enhanced.ear.util.ApplicationConfiguratorModelFactory.createModel(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.etools.webtools.sdo.deploy.internal.WAS6ServerSetup.deployRBDDatabaseConfigToWASV6Server(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.etools.webtools.sdo.deploy.internal.WAS6ServerSetup.doIt(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.etools.webtools.sdo.jdbc.ui.internal.operations.SDODeployBuilder.build(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.etools.webtools.sdo.jdbc.ui.internal.operations.EARAddListner.build(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.etools.webtools.sdo.jdbc.ui.internal.operations.EARAddListner.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl$1.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.core.internal.resources.Workspace.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.runOperation(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.runOperation(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.doExecute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.executeImpl(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.cacheThreadAndContinue(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.project.facet.J2EEFacetInstallDelegate.addToEar(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.project.facet.J2EEFacetInstallDelegate.installAndAddModuletoEAR(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.web.project.facet.WebFacetPostInstallDelegate.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.callDelegate(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.callEventHandlers(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.modifyInternal(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.access$2(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.project.facet.core.internal.FacetedProject$1.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.core.internal.resources.Workspace.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.project.facet.core.internal.FacetedProject.modify(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.componentcore.internal.operation.FacetProjectCreationOperation.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl$1.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.core.internal.resources.Workspace.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.runOperation(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.runOperation(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.doExecute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.executeImpl(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.cacheThreadAndContinue(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.internal.archive.operations.J2EEArtifactImportOperation.createVirtualComponent(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.internal.archive.operations.J2EEArtifactImportOperation.doExecute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.internal.web.archive.operations.WebComponentImportOperation.doExecute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.internal.archive.operations.J2EEArtifactImportOperation.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl$1.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.core.internal.resources.Workspace.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.runOperation(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.runOperation(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.doExecute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.executeImpl(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.cacheThreadAndContinue(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.internal.archive.operations.EARComponentImportOperation.doExecute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jst.j2ee.internal.archive.operations.J2EEArtifactImportOperation.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl$1.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.core.internal.resources.Workspace.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.runOperation(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.runOperation(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.doExecute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.executeImpl(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.cacheThreadAndContinue(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.DataModelPausibleOperationImpl.execute(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.wst.common.frameworks.internal.datamodel.ui.DataModelWizard$1$CatchThrowableRunnableWithProgress.run(Unknown Source)&#xD;&#xA;&#x9;at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(Unknown Source)&#xD;&#xA;"/>
+			<msgCatalogId>ADMA7012E</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ws.management.resources.AppDeploymentMessages</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:16:22.349Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>15</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>14</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>AUDIT</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>850</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>com.ibm.ws.sm.workspace.impl.WorkSpaceManagerImpl</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogTokens value="false"/>
+			<msgCatalogId>WKSP0500I Workspace configuration consistency check is {0}.</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ws.sm.workspace.impl.workspace_NLS</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:19:08.021Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>24</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>16</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>WARNING</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>900</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>com.ibm.ws.naming.util.Helpers</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogTokens value="com.ibm.ws.naming.jndicos.CNContextImpl"/>
+			<msgCatalogTokens value="lookupExt"/>
+			<msgCatalogTokens value=""/>
+			<msgCatalogTokens value="RMIConnector"/>
+			<msgCatalogTokens value=""/>
+			<msgCatalogTokens value="javax.naming.NamingException: Error during resolve [Root exception is org.omg.CORBA.INTERNAL: initial and forwarded IOR inaccessible  vmcid: IBM  minor code: 58C  completed: No]&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.doLookup(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.doLookup(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.lookupExt(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.lookup(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.util.WsnInitCtx.lookup(Unknown Source)&#xD;&#xA;&#x9;at javax.naming.InitialContext.lookup(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.connector.rmi.RMIConnectorClient.reconnect(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.connector.rmi.RMIConnectorClient.reconnect(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.connector.rmi.RMIConnectorClient.&lt;init&gt;(Unknown Source)&#xD;&#xA;&#x9;at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)&#xD;&#xA;&#x9;at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)&#xD;&#xA;&#x9;at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)&#xD;&#xA;&#x9;at java.lang.reflect.Constructor.newInstance(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.websphere.management.AdminClientFactory.createAdminClient(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.ast.st.v61.core.internal.jmx.WebSphereJMXAgent$AgentThread.run(Unknown Source)&#xD;&#xA;Caused by: org.omg.CORBA.INTERNAL: initial and forwarded IOR inaccessible  vmcid: IBM  minor code: 58C  completed: No&#xD;&#xA;&#x9;at com.ibm.rmi.corba.ClientDelegate.createRequest(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.CORBA.iiop.ClientDelegate.createRequest(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.rmi.corba.ClientDelegate.createRequest(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.CORBA.iiop.ClientDelegate.createRequest(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.rmi.corba.ClientDelegate.request(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.CORBA.iiop.ClientDelegate.request(Unknown Source)&#xD;&#xA;&#x9;at org.omg.CORBA.portable.ObjectImpl._request(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.WsnOptimizedNaming._NamingContextStub.resolve_complete_info(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.cosResolve(Unknown Source)&#xD;&#xA;&#x9;... 15 more&#xD;&#xA;"/>
+			<msgCatalogId>jndiNamingException</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ws.naming.util.WsnMessages</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+	<CommonBaseEvent creationTime="2019-08-03T20:19:08.068Z" version="1.0.1">
+		<extendedDataElements name="CommonBaseEventLogRecord:sequenceNumber" type="long">
+			<values>25</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:threadID" type="int">
+			<values>16</values>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:level" type="noValue">
+			<children name="CommonBaseEventLogRecord:name" type="string">
+				<values>WARNING</values>
+			</children>
+			<children name="CommonBaseEventLogRecord:value" type="int">
+				<values>900</values>
+			</children>
+		</extendedDataElements>
+		<extendedDataElements name="CommonBaseEventLogRecord:loggerName" type="string">
+			<values>com.ibm.ws.naming.util.Helpers</values>
+		</extendedDataElements>
+		<sourceComponentId component="Logging" componentIdType="Application" executionEnvironment="Java" location="192.168.56.1" locationType="IPV4" subComponent="Logger" componentType="Logging_Application"/>
+		<msgDataElement>
+			<msgCatalogTokens value="com.ibm.ws.naming.jndicos.CNContextImpl"/>
+			<msgCatalogTokens value="lookupExt"/>
+			<msgCatalogTokens value=""/>
+			<msgCatalogTokens value="RMIConnector"/>
+			<msgCatalogTokens value=""/>
+			<msgCatalogTokens value="javax.naming.NamingException: Error during resolve [Root exception is org.omg.CORBA.INTERNAL: initial and forwarded IOR inaccessible  vmcid: IBM  minor code: 58C  completed: No]&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.doLookup(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.doLookup(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.lookupExt(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.lookup(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.util.WsnInitCtx.lookup(Unknown Source)&#xD;&#xA;&#x9;at javax.naming.InitialContext.lookup(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.connector.rmi.RMIConnectorClient.reconnect(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.connector.rmi.RMIConnectorClient.reconnect(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.management.connector.rmi.RMIConnectorClient.&lt;init&gt;(Unknown Source)&#xD;&#xA;&#x9;at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)&#xD;&#xA;&#x9;at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)&#xD;&#xA;&#x9;at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)&#xD;&#xA;&#x9;at java.lang.reflect.Constructor.newInstance(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.websphere.management.AdminClientFactory.createAdminClient(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.ast.st.v61.core.internal.jmx.WebSphereJMXAgent$AgentThread.run(Unknown Source)&#xD;&#xA;Caused by: org.omg.CORBA.INTERNAL: initial and forwarded IOR inaccessible  vmcid: IBM  minor code: 58C  completed: No&#xD;&#xA;&#x9;at com.ibm.rmi.corba.ClientDelegate.createRequest(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.CORBA.iiop.ClientDelegate.createRequest(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.rmi.corba.ClientDelegate.createRequest(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.CORBA.iiop.ClientDelegate.createRequest(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.rmi.corba.ClientDelegate.request(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.CORBA.iiop.ClientDelegate.request(Unknown Source)&#xD;&#xA;&#x9;at org.omg.CORBA.portable.ObjectImpl._request(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.WsnOptimizedNaming._NamingContextStub.resolve_complete_info(Unknown Source)&#xD;&#xA;&#x9;at com.ibm.ws.naming.jndicos.CNContextImpl.cosResolve(Unknown Source)&#xD;&#xA;&#x9;... 15 more&#xD;&#xA;"/>
+			<msgCatalogId>jndiNamingException</msgCatalogId>
+			<msgCatalogType>Java</msgCatalogType>
+			<msgCatalog>com.ibm.ws.naming.util.WsnMessages</msgCatalog>
+		</msgDataElement>
+		<situation categoryName="ReportSituation">
+			<situationType xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="ReportSituation" reasoningScope="INTERNAL" reportCategory="LOG"/>
+		</situation>
+	</CommonBaseEvent>
+</CommonBaseEvents>

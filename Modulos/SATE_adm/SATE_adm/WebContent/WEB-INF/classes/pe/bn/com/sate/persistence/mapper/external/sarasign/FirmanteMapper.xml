@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.persistence.mapper.external.sarasign.FirmanteMapper">
+
+	<resultMap id="mapFirmante" type="Firmante">
+		<result column="TIPO_DOCUMENTO" property="tipoDocumento" />
+		<result column="NUMERO_DOCUMENTO" property="numeroDocumento" />
+		<result column="NOMBRES" property="nombres" />
+		<result column="APPATERNO" property="apellidoPaterno" />
+		<result column="APMATERNO" property="apellidoMaterno" />
+	</resultMap>
+
+</mapper>

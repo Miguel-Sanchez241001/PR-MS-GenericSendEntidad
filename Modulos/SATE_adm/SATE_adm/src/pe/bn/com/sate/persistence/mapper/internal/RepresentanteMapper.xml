@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.persistence.mapper.internal.RepresentanteMapper">
+
+	<resultMap id="mapRepresentante" type="Representante">
+		<result property="id" column="B02_REP"></result>
+		<result property="tipoDocumento" column="B02_TIPO_DOCUMENTO"></result>
+		<result property="numeroDocumento" column="B02_NUM_DOCUMENTO"></result>
+		<result property="nombres" column="B02_NOMBRES"></result>
+		<result property="correoLaboral" column="B02_CORREO"></result>
+		<result property="correoPersonal" column="B02_CORREO_PERSONAL"></result>
+		<result property="telefonoFijo" column="B02_TELEFONO_FIJO"></result>
+		<result property="telefonoMovil" column="B02_TELEFONO_MOVIL"></result>
+		<result property="estado" column="B02_ESTADO_REP"></result>
+		<result property="fechaRegistro" column="B02_FEC_REGISTRO"></result>
+		<result property="codigoTelefono" column="B02_COD_TELEFONO"></result>
+		<result property="anexo" column="B02_ANEXO"></result>
+		<result property="operadora" column="B02_OPERADORA"></result>
+		<result property="perfilUsuario" column="B02_PERFIL_USUARIO"></result>
+		<result property="apellidoPaterno" column="B02_APPATERNO"></result>
+		<result property="apellidoMaterno" column="B02_APMATERNO"></result>
+		<result property="flagCambioClave" column="B02_FLAG_CAMBIO_CLAVE"></result>
+		<result property="perfilUsuarioDescripcion" column="B011_PERFIL_USUARIO_DESCRIPCION"></result>
+		<result property="representanteCreador" column="B02_REP_CREADOR"></result>
+	</resultMap>
+
+
+	<resultMap id="mapHistorialRepresentante" type="Representante">
+		<result property="id" column="B02_REP"></result>
+		<result property="tipoDocumento" column="B02_TIPO_DOCUMENTO"></result>
+		<result property="numeroDocumento" column="B02_NUM_DOCUMENTO"></result>
+		<result property="nombres" column="B02_NOMBRES"></result>
+		<result property="correoLaboral" column="B02_CORREO"></result>
+		<result property="correoPersonal" column="B02_CORREO_PERSONAL"></result>
+		<result property="telefonoFijo" column="B02_TELEFONO_FIJO"></result>
+		<result property="telefonoMovil" column="B02_TELEFONO_MOVIL"></result>
+		<result property="estado" column="B02_ESTADO_REP"></result>
+		<result property="fechaRegistro" column="B03_FEC_REGISTRO"></result>
+		<result property="codigoTelefono" column="B02_COD_TELEFONO"></result>
+		<result property="anexo" column="B02_ANEXO"></result>
+		<result property="operadora" column="B02_OPERADORA"></result>
+		<result property="perfilUsuario" column="B02_PERFIL_USUARIO"></result>
+		<result property="apellidoPaterno" column="B02_APPATERNO"></result>
+		<result property="apellidoMaterno" column="B02_APMATERNO"></result>
+		<result property="flagCambioClave" column="B02_FLAG_CAMBIO_CLAVE"></result>
+	</resultMap>
+
+
+	<resultMap id="mapUsuarioHistorico" type="UsuarioHistoricoRepresentante">
+		<result property="id" column="B08_ID_USU_REP"></result>
+		<result property="idRepresentante" column="B02_ID_REP"></result>
+		<result property="idUsuario" column="B02_ID_USU"></result>
+		<result property="correoLaboral" column="B02_CORREO"></result>
+		<result property="usuarioPerfil" column="B08_USU_PERFIL"></result>
+		<result property="usuarioPerfilDescripcion" column="B11_USU_PERFIL_DESCRIPCION"></result>
+		<result property="nombres" column="B02_NOMBRES"></result>
+		<result property="apellidoPaterno" column="B02_APPATERNO"></result>
+		<result property="apellidoMaterno" column="B02_APMATERNO"></result>
+		<result property="fechaActivacion" column="B08_FECHA_ACTIVACION"></result>
+		<result property="fechaDesactivacion" column="B08_FECHA_DESACTIVACION"></result>
+		<result property="tipoDocumento" column="B02_TIPO_DOCUMENTO"></result>
+		<result property="numeroDocumento" column="B02_NUM_DOCUMENTO"></result>
+	</resultMap>
+
+</mapper>

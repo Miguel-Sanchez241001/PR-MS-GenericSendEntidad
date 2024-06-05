@@ -1,0 +1,13 @@
+OPTIONS (SKIP=1)
+LOAD DATA
+APPEND
+INTO TABLE BN_SATE.BNSATE12_RPTA_MC_TEMP
+WHEN (77:80) = '0130'
+(
+b12_TRACE POSITION(53:58),
+b12_codigo_bloqueo POSITION(87:90),
+b12_motivo_bloqueo POSITION(91:93),
+b12_tipo_respuesta "TO_NUMBER('1')"
+b12_fecha_registro "SYSDATE"
+)
+

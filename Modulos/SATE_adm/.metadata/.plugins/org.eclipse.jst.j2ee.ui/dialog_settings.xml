@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item value="true" key="J2EE_EXPORT_OVERWRITE"/>
+	<item value="true" key="J2EE_EXPORT_SOURCE"/>
+	<list key="J2EE_IMPORT_EAR">
+		<item value="D:\cptr\SATE_admEAR.ear"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_EAR">
+		<item value="D:\EAR1008219\SATE_admEAR.ear"/>
+		<item value="C:\Users\fgalvans\Desktop\SATE FINAL\war\SATE_admEAR.ear"/>
+	</list>
+	<list key="MRU_RUNTIME_STORE">
+		<item value="was.base.v85"/>
+	</list>
+</section>

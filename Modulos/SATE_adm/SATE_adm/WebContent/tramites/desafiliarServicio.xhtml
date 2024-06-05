@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+
+		<h2>DESAFILIAR EL SERVICIO</h2>
+
+
+		<h:form id="formEmpresa">
+
+			<p:panel style="margin:15px 15px 15px 15px;padding:10px;">
+
+				<h:panelGrid style="width:90%;text-align:center;">
+
+					<h3 style="text-align: center">Datos de la empresa/unidad
+						ejecutora</h3>
+					<div class="dashed"></div>
+					<p:panelGrid columns="2" style="margin:auto;">
+
+						<p:outputLabel for="txtnumeroruc" value="N&uacute;mero de Ruc: " />
+						<h:panelGroup>
+							<p:inputText id="txtnumeroruc" styleClass="input-medio"
+								maxlength="11"
+								value="#{desafiliarEmpresaController.desafiliarEmpresaModel.empresa.ruc}"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								required="true"
+								requiredMessage="Ingrese un n&uacute;mero de ruc"
+								validatorMessage="Ruc invalido, cantidad de d&iacute;gitos debe ser 11">
+								<f:validateLength minimum="11" />
+							</p:inputText>
+							<p:commandButton id="verifiCcRuc" value="Verificar"
+								onstart="PF('statusDialog').show()"
+								oncomplete="PF('statusDialog').hide()" style="margin-left:10px;"
+								process="@this,txtnumeroruc"
+								actionListener="#{desafiliarEmpresaController.buscarEmpresa()}"
+								update="formEmpresa" />
+						</h:panelGroup>
+
+						<p:outputLabel value="Raz&oacute;n Social: " />
+						<p:inputText id="razon-social" styleClass="input-grande"
+							value="#{desafiliarEmpresaController.desafiliarEmpresaModel.empresa.razonSocial}"
+							disabled="true" />
+						<p:outputLabel value="Direcci&oacute;n:" />
+						<p:inputText id="direccion" styleClass="input-grande"
+							value="#{desafiliarEmpresaController.desafiliarEmpresaModel.empresa.direccion}"
+							disabled="true" />
+						<p:outputLabel value="Tipo:" />
+						<p:inputText id="tipo" styleClass="input-grande"
+							value="#{desafiliarEmpresaController.desafiliarEmpresaModel.tipoEmpresaLetras()}"
+							readonly="true" />
+						<p:outputLabel value="Motivo del bloqueo * : " />
+						<p:selectOneMenu id="motivo"
+							value="#{desafiliarEmpresaController.desafiliarEmpresaModel.motivo}"
+							style="width:270px" required="true"
+							requiredMessage="Seleccione un motivo">
+							<f:selectItem itemLabel="Seleccione" itemValue="" />
+							<f:selectItem itemLabel="Desactivación del Cliente"
+								itemValue="Desactivación del Cliente" />
+							<f:selectItem itemLabel="Cumplimiento Normativo"
+								itemValue="Cumplimiento Normativo" />
+							<f:selectItem itemLabel="Fraude" itemValue="Fraude" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Detalle * : " />
+
+						<p:inputTextarea id="detalle" styleClass="text-area mayuscula"
+							onkeydown="return validarTextArea(event,this.value.length,150)"
+							value="#{desafiliarEmpresaController.desafiliarEmpresaModel.detalle}"
+							counter="display" counterTemplate="{0} caracteres restantes."
+							rows="5" cols="39" autoResize="false" resizable="false"
+							maxlength="150">
+						</p:inputTextarea>
+						<br></br>
+						<h:outputText id="display" style="float:right;" />
+
+					</p:panelGrid>
+
+					<div class="nota">
+						<span>NOTA : * DATOS OBLIGATORIOS</span>
+					</div>
+
+					<div class="messages" style="display: inline-block">
+						<p:messages autoUpdate="true" id="msgs" showDetail="true"
+							closable="true" showSummary="false" />
+					</div>
+					<div class="dashed">
+
+						<p:commandButton id="grabar" value="Desafiliar"
+							update="formEmpresa" styleClass="btnGrande"
+							onstart="PF('statusDialog').show()"
+							oncomplete="PF('statusDialog').hide()"
+							process="@this,txtnumeroruc,razon-social,direccion,tipo,motivo,detalle"
+							actionListener="#{desafiliarEmpresaController.mostrarConfirmacion()}">
+						</p:commandButton>
+
+					</div>
+
+				</h:panelGrid>
+
+			</p:panel>
+
+		</h:form>
+
+		<p:dialog id="dialog-confirmar" modal="true" showEffect="clip" hideEffect="clip" 
+			header="Agregar Descripcion de Chequera" draggable="false" 
+			widgetVar="confirmDesafiliacionWv" position="center" onShow="confirmDesafiliacionWv.initPosition()"
+			closeOnEscape="true">
+
+
+			<h:form id="formExportarFicha">
+				<p:panelGrid id="confirmar" columns="2" style="widht:100%">
+					<h:outputText
+						value="¿Esta seguro que desea desafiliar este servicio?" />
+				</p:panelGrid>
+				<div class="botones">
+
+					<p:commandButton id="aceptar" value="Aceptar"
+						actionListener="#{desafiliarEmpresaController.bloquearEmpresa()}"
+						update=":formEmpresa"
+						oncomplete="$('#formExportarFicha\\:generarPdfBtn').click();">
+					</p:commandButton>
+
+					<p:commandLink id="generarPdfBtn" value="" style="display:none;"
+						actionListener="#{desafiliarEmpresaController.generarPdf()}"
+						ajax="false">
+					</p:commandLink>
+
+					<p:commandButton id="cancelar" value="Cancelar"
+						oncomplete="confirmDesafiliacionWv.hide();" update=":formEmpresa" />
+
+				</div>
+			</h:form>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>

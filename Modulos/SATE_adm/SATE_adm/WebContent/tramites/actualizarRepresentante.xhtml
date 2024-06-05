@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>ACTUALIZAR EL REPRESENTANTE</h2>
+
+
+		<h:form id="formActualizarRepresentante">
+			<p:panel style="margin:15px 15px 15px 15px;padding:10px;">
+
+				<h:panelGrid style="width:90%;text-align:center;">
+
+					<p:panel styleClass="card sombra-inferior">
+						<h:panelGrid style="margin:auto;width:90%;">
+
+							<h3>Datos de la empresa/unidad ejecutora</h3>
+							<div class="dashed"></div>
+							<p:panelGrid columns="2" id="empresaPanel">
+								<p:outputLabel value="N&uacute;mero de Ruc * : " />
+								<h:panelGroup>
+									<p:inputText id="txtnumeroruc" styleClass="input-medio"
+										maxlength="11"
+										value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.ruc}"
+										onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+										required="true"
+										requiredMessage="Ingrese un n&uacute;mero de ruc"
+										validatorMessage="Ruc invalido, cantidad de d&iacute;gitos debe ser 11">
+										<f:validateLength minimum="11" />
+									</p:inputText>
+									<p:commandButton id="verifiCcRuc" value="Verificar"
+										style="margin-left:10px;"
+										actionListener="#{actualizarRepresentanteController.buscarEmpresa()}"
+										process="@this,txtnumeroruc"
+										onstart="PF('statusDialog').show()"
+										oncomplete="PF('statusDialog').hide()"
+										update="formActualizarRepresentante:empresaPanel formActualizarRepresentante:representantePanel">
+									</p:commandButton>
+								</h:panelGroup>
+
+								<p:outputLabel value="Raz&oacute;n Social: " />
+								<p:inputText id="razon-social" styleClass="input-grande"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.razonSocial}"
+									disabled="true" />
+
+								<p:outputLabel value="Nombre corto:" />
+								<p:inputText id="nombreCorto" styleClass="input-grande"
+									required="true" requiredMessage="Ingrese un nombre corto"
+									maxlength="19"
+									onkeypress="javascript:return jsValidarKey(event,/[A-Za-z]/);"
+									onkeyup="this.value=this.value.toUpperCase()"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.nombreCorto}"
+									disabled="true" />
+								<p:outputLabel value="Tipo * :" />
+								<p:selectOneMenu id="tipo" style="width:246px"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.tipo}"
+									required="true" requiredMessage="Seleccione tipo de servicio"
+									disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}">
+									<p:ajax event="change"
+										update="formActualizarRepresentante:tipo" />
+									<f:selectItem itemLabel="Seleccionar" />
+									<f:selectItems
+										value="#{actualizarRepresentanteController.actualizarRepresentanteModel.listaTipoEmpresa}"
+										var="item" itemLabel="#{item.descripcion}"
+										itemValue="#{item.codigo}" />
+								</p:selectOneMenu>
+
+							</p:panelGrid>
+						</h:panelGrid>
+					</p:panel>
+
+					<br></br>
+
+					<p:panel styleClass="card sombra-inferior">
+						<h:panelGrid style="margin:auto;width:90%;">
+
+							<h3 style="text-align: center">Datos del representante</h3>
+							<div class="dashed"></div>
+
+							<p:panelGrid columns="2" id="representantePanel">
+
+								<p:outputLabel value="Tipo de Documento: "
+									indicateRequired="false" />
+								<h:panelGroup>
+									<p:inputText id="tipo-documento"
+										value="#{actualizarRepresentanteController.actualizarRepresentanteModel.tipoDocumentoRepresentanteLetras()}"
+										maxlength="60" disabled="true" />
+									<p:commandButton id="obtenerListaFirmantes"
+										icon="ui-icon-search" style="margin-left:10px;"
+										actionListener="#{actualizarRepresentanteController.obtenerListaFirmantes()}"
+										update=":formSeleccionarRepresentante"
+										onstart="PF('statusDialog').show()"
+										oncomplete="PF('SeleccionarRepresentanteWv').show();PF('statusDialog').hide()"
+										disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}"
+										process="@this">
+									</p:commandButton>
+								</h:panelGroup>
+
+								<p:outputLabel value="N&uacute;mero de Documento: "
+									indicateRequired="false" />
+								<p:inputText id="nro-doc"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.numeroDocumento}"
+									maxlength="60" disabled="true" />
+
+
+								<p:outputLabel value="Apellidos y Nombres: "
+									indicateRequired="false" />
+								<p:inputText id="nombre" styleClass="input-grande"
+									style="width:300px"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.nombreCompleto()}"
+									maxlength="60" disabled="true" />
+
+
+								<p:outputLabel value="Correo Laboral * : "
+									indicateRequired="false" />
+								<p:inputText id="correo" styleClass="input-grande"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.correoLaboral}"
+									maxlength="40" required="true"
+									requiredMessage="Ingrese Correo Electronico"
+									disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRepresentante() || !actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}"
+									validatorMessage="Formato inv&aacute;lido de correo laboral">
+									<p:ajax update="msgs" event="keyup" />
+									<f:validateRegex
+										pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								</p:inputText>
+
+								<p:outputLabel value="Correo Personal * : "
+									indicateRequired="false" />
+								<p:inputText id="correo-pers" styleClass="input-grande"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.correoPersonal}"
+									maxlength="40" required="true"
+									requiredMessage="Ingrese Correo Electronico"
+									disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRepresentante() || !actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}"
+									validatorMessage="Formato inv&aacute;lido de correo personal">
+									<p:ajax update="msgs" event="keyup" />
+									<f:validateRegex
+										pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+								</p:inputText>
+
+
+								<p:outputLabel value="Discado Directo * : "
+									indicateRequired="false" />
+								<p:selectOneMenu id="departamento" style="width:246px"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.codigoTelefono}"
+									required="true" requiredMessage="Seleccione discado directo"
+									disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRepresentante() || !actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}">
+									<p:ajax event="change"
+										update="formActualizarRepresentante:discado,formActualizarRepresentante:tel-fijo" />
+									<f:selectItem itemLabel="Seleccionar" />
+									<f:selectItems
+										value="#{actualizarRepresentanteController.actualizarRepresentanteModel.listaDiscadoDirecto}"
+										var="item" itemLabel="#{item.nombre}"
+										itemValue="#{item.codigo}" />
+								</p:selectOneMenu>
+
+								<p:outputLabel value="Tel&eacute;fono Laboral * : "
+									indicateRequired="false" />
+								<h:panelGroup>
+									<p:inputText id="discado" styleClass="input-chico"
+										value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.codigoTelefono}"
+										style="width:30px" maxlength="3" required="true"
+										requiredMessage="Seleccione departamento" disabled="true" />
+									<h:outputLabel>- </h:outputLabel>
+
+									<p:inputText id="tel-fijo" styleClass="input-chico"
+										value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.telefonoFijo}"
+										maxlength="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.codigoTelefono=='01' ? '7' : '6'}"
+										onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+										required="true"
+										disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRepresentante() || !actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}"
+										requiredMessage="Ingrese Tel&ecaute;fono Fijo"
+										validatorMessage="Tel&eacute;fono Fijo inv&aacute;lido, cantidad de d&iacute;gitos debe ser #{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.codigoTelefono=='01' ? '7' : '6'}">
+										<f:validateLength
+											minimum="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.codigoTelefono=='01' ? '7' : '6'}" />
+									</p:inputText>
+								</h:panelGroup>
+
+								<p:outputLabel value="Anexo: " />
+								<p:inputText id="anexo" styleClass="input-chico"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.anexo}"
+									maxlength="6"
+									disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRepresentante() || !actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}"
+									onkeypress="javascript:return jsValidarKey(event,/[0-9]/);">
+								</p:inputText>
+
+								<p:outputLabel value="Operador M&oacute;vil * : "
+									indicateRequired="false" />
+								<p:selectOneMenu id="operadora" style="width:246px"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.operadora}"
+									required="true"
+									disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRepresentante() || !actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}"
+									requiredMessage="Seleccione operadora">
+									<f:selectItem itemLabel="Seleccionar" />
+									<f:selectItem itemLabel="Movistar" itemValue="M" />
+									<f:selectItem itemLabel="Claro" itemValue="C" />
+									<f:selectItem itemLabel="Entel" itemValue="E" />
+									<f:selectItem itemLabel="Bitel" itemValue="B" />
+								</p:selectOneMenu>
+
+								<p:outputLabel value="Tel&eacute;fono Personal * : " />
+								<p:inputText id="tel-movil" styleClass="input-chico"
+									value="#{actualizarRepresentanteController.actualizarRepresentanteModel.empresa.representante.telefonoMovil}"
+									maxlength="9" required="true"
+									disabled="#{!actualizarRepresentanteController.actualizarRepresentanteModel.validarRepresentante() || !actualizarRepresentanteController.actualizarRepresentanteModel.validarRuc()}"
+									validatorMessage="Número de celular no válido"
+									requiredMessage="Ingrese un número celular">
+									<p:ajax update="msgs" event="keyup" />
+									<f:validateRegex pattern="9[0-9]{8}" />
+
+								</p:inputText>
+
+							</p:panelGrid>
+						</h:panelGrid>
+					</p:panel>
+
+
+					<div class="nota">
+						<span>NOTA : * DATOS OBLIGATORIOS</span>
+					</div>
+					<div class="messages" style="display: inline-block">
+						<p:messages autoUpdate="true" id="msgs" showDetail="true"
+							closable="true" showSummary="false" />
+					</div>
+
+
+					<div class="dashed">
+						<p:commandButton id="registrar" value="Actualizar"
+							update="formActualizarRepresentante" styleClass="btnGrande"
+							onstart="PF('statusDialog').show()"
+							oncomplete="PF('statusDialog').hide()"
+							process="@this,tipo-documento,nro-doc,nombre,correo,correo-pers,departamento,tel-fijo,operadora,tel-movil,txtnumeroruc,anexo,tipo,nombreCorto"
+							actionListener="#{actualizarRepresentanteController.mostrarConfirmacion()}" />
+					</div>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+
+		<p:dialog id="dialog-seleccionarRepresentante" modal="true"
+			header="Seleccionar Representante" resizable="false"
+			widgetVar="SeleccionarRepresentanteWv" position="center"
+			showEffect="clip" hideEffect="clip" draggable="false"
+			onShow="SeleccionarRepresentanteWv.initPosition()"
+			closeOnEscape="true">
+			<h:form id="formSeleccionarRepresentante">
+				<p:panelGrid id="panel-seleccionarRepresentante" columns="1"
+					style="widht:100%">
+					<p:dataTable id="tablaEmpresa" paginator="true"
+						paginatorPosition="bottom" rows="5"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+									 {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+						currentPageReportTemplate="{currentPage} de {totalPages}"
+						rowsPerPageTemplate="5,10,15"
+						value="#{actualizarRepresentanteController.actualizarRepresentanteModel.listaFirmantes}"
+						selectionMode="single" var="firmante"
+						rowKey="#{firmante.numeroDocumento}"
+						emptyMessage="No hay representantes" style="width:100%">
+						<p:ajax event="rowSelect"
+							listener="#{actualizarRepresentanteController.onRowSelect}"
+							update=":formActualizarRepresentante"
+							oncomplete="PF('SeleccionarRepresentanteWv').hide()" />
+						<p:column headerText="Tipo documento"
+							style="width:20%;text-align:center; vertical-align: middle;">
+							<h:outputText
+								value="#{actualizarRepresentanteController.actualizarRepresentanteModel.tipoDocumentoFirmanteLetras(firmante.tipoDocumento)}" />
+						</p:column>
+						<p:column headerText="Numero documento"
+							style="width:30%;text-align:center; vertical-align: middle;">
+							<h:outputText value="#{firmante.numeroDocumento}" />
+						</p:column>
+						<p:column headerText="Nombre completo"
+							style="width:50%; text-align:left;vertical-align: middle;">
+							<h:outputText value="#{firmante.nombreCompleto()}" />
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="dialog-confirmar" modal="true" draggable="false"
+			resizable="false" header="Confirmar Guardar datos del Representante"
+			widgetVar="confirmarGuardarWv" position="center" showEffect="clip"
+			hideEffect="clip" onShow="confirmarGuardarWv.initPosition()"
+			closeOnEscape="true">
+			<h:form id="formExportarFicha">
+				<p:panelGrid id="panel-addDescheq" columns="2" style="widht:100%">
+					<h:outputText value="¿Desea Guardar los datos del Representante ?" />
+				</p:panelGrid>
+				<div class="botones">
+					<p:commandButton id="aceptar" value="Aceptar"
+						actionListener="#{actualizarRepresentanteController.actualizarRepresentante()}"
+						oncomplete="PF('statusDialog').hide();confirmarGuardarWv.hide()"
+						onstart="PF('statusDialog').show();"
+						update=":formActualizarRepresentante" />
+					<p:commandButton id="cancelar" value="Cancelar"
+						oncomplete="confirmarGuardarWv.hide()"
+						update=":formActualizarRepresentante" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("legend").attr("align", "left");
+			});
+		</script>
+	</ui:define>
+
+</ui:composition>

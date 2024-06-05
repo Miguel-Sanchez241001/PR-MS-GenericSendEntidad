@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.persistence.mapper.internal.ParametroMapper">
+
+	<resultMap id="mapParametro" type="Parametro">
+		<result property="idTabla" column="B16_ID_TABLA"></result>
+		<result property="idRegistro" column="B16_ID_REGISTRO"></result>
+		<result property="valor" column="B16_VALOR"></result>
+	</resultMap>
+
+</mapper>

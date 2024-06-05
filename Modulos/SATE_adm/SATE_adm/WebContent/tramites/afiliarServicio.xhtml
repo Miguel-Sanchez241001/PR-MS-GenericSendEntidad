@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>AFILIACI&Oacute;N AL SERVICIO</h2>
+
+		<center class="pasos">
+			<div id="c0" class="circulo c-activo">
+				<span>1</span>
+			</div>
+			<div class="barra-contenedor">
+				<div id="b1" class="barra b-inactivo"></div>
+			</div>
+			<div id="c1" class="circulo c-inactivo">
+				<span>2</span>
+			</div>
+		</center>
+
+		<h:form id="formAfiliacion">
+
+			<p:panel style="margin:15px 15px 15px 15px;padding:10px;">
+
+				<h:panelGrid
+					rendered="#{afiliarServicioController.afiliarServicioModel.pasoActual==0}"
+					style="width:90%;">
+					<h3 style="text-align: center">Datos de la empresa/unidad
+						ejecutora</h3>
+					<div class="dashed"></div>
+
+					<p:panelGrid columns="2"
+						style="margin:auto;text-align:right !important;">
+
+						<p:outputLabel value="N&uacute;mero de RUC * : " />
+						<h:panelGroup id="panelRuc">
+							<p:inputText id="txtnumeroruc" styleClass="input-medio"
+								maxlength="11"
+								value="#{afiliarServicioController.afiliarServicioModel.ruc}"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								required="true"
+								requiredMessage="Ingrese un n&uacute;mero de RUC"
+								validatorMessage="Ruc invalido, cantidad de d&iacute;gitos debe ser 11">
+								<f:validateLength minimum="11" />
+							</p:inputText>
+
+							<p:commandButton id="verifiCcRuc" value="Verificar"
+								style="margin-left:10px;" process="@this txtnumeroruc"
+								onstart="PF('statusDialog').show()"
+								oncomplete="PF('statusDialog').hide()"
+								actionListener="#{afiliarServicioController.buscarEmpresa()}"
+								update="formAfiliacion" />
+						</h:panelGroup>
+
+						<p:outputLabel value="Raz&oacute;n Social: " />
+						<p:inputText id="razon-social" styleClass="input-grande"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.razonSocial}"
+							disabled="true" />
+
+						<p:outputLabel value="Direcci&oacute;n:" />
+						<p:inputText id="direccion" styleClass="input-grande"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.direccion}"
+							disabled="true" />
+						<p:outputLabel value="Nombre corto:" />
+						<p:inputText id="nombreCorto" styleClass="input-grande"
+							onkeypress="javascript:return jsValidarKey(event,/[A-Za-z]/);"
+							onkeyup="this.value=this.value.toUpperCase()" required="true"
+							requiredMessage="Ingrese un nombre corto" maxlength="19"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.nombreCorto}"
+							disabled="true" />
+						<p:outputLabel value="Tipo * :" />
+						<p:selectOneMenu id="tipo" style="width:250px"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.tipo}"
+							required="true" requiredMessage="Seleccione tipo de servicio"
+							Label="Tipo"
+							disabled="#{!afiliarServicioController.afiliarServicioModel.validarRuc()}">
+							<p:ajax event="change" update="formAfiliacion:tipo" />
+							<f:selectItem itemLabel="Seleccionar" />
+							<f:selectItems
+								value="#{afiliarServicioController.afiliarServicioModel.listaTipoEmpresa}"
+								var="item" itemLabel="#{item.descripcion}"
+								itemValue="#{item.codigo}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Departamento * :"
+							rendered="#{afiliarServicioController.afiliarServicioModel.empresaSinUbigeo}" />
+						<p:selectOneMenu id="somDepartamento" style="width:250px;"
+							rendered="#{afiliarServicioController.afiliarServicioModel.empresaSinUbigeo}"
+							value="#{afiliarServicioController.afiliarServicioModel.departamentoSeleccionado}"
+							required="true" requiredMessage="Seleccione un departamento">
+							<f:validator validatorId="afiliarServicioValidator" />
+							<p:ajax
+								update="formAfiliacion:somProvincia formAfiliacion:somDistrito"
+								listener="#{afiliarServicioController.buscarProvincias()}" />
+							<p:ajax
+								update="formAfiliacion:somProvincia formAfiliacion:somDistrito"
+								listener="#{afiliarServicioController.limpiarUbigeo()}" />
+							<f:selectItem itemLabel="Seleccione" itemValue="0" />
+							<f:selectItems var="item"
+								value="#{afiliarServicioController.afiliarServicioModel.departamentos}"
+								itemLabel="#{item.descripcion}"
+								itemValue="#{item.codDepartamento}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Provincia * : "
+							rendered="#{afiliarServicioController.afiliarServicioModel.empresaSinUbigeo}" />
+						<p:selectOneMenu id="somProvincia" style="width:250px;"
+							rendered="#{afiliarServicioController.afiliarServicioModel.empresaSinUbigeo}"
+							value="#{afiliarServicioController.afiliarServicioModel.provinciaSeleccionado}"
+							required="true" requiredMessage="Seleccione una provincia">
+							<f:validator validatorId="afiliarServicioValidator" />
+							<p:ajax update=":formAfiliacion:somDistrito"
+								listener="#{afiliarServicioController.buscarDistritos()}" />
+							<p:ajax update=":formAfiliacion:somDistrito"
+								listener="#{afiliarServicioController.limpiarUbigeo()}" />
+							<f:selectItem itemLabel="Seleccione" itemValue="1" />
+							<f:selectItems var="item"
+								value="#{afiliarServicioController.afiliarServicioModel.provincias}"
+								itemLabel="#{item.descripcion}" itemValue="#{item.codProvincia}" />
+						</p:selectOneMenu>
+						<p:outputLabel value="Distrito * : "
+							rendered="#{afiliarServicioController.afiliarServicioModel.empresaSinUbigeo}" />
+						<p:selectOneMenu id="somDistrito" style="width:250px;"
+							rendered="#{afiliarServicioController.afiliarServicioModel.empresaSinUbigeo}"
+							value="#{afiliarServicioController.afiliarServicioModel.distritoSeleccionado}"
+							required="true" requiredMessage="Seleccione un distrito">
+							<f:validator validatorId="afiliarServicioValidator" />
+							<p:ajax listener="#{afiliarServicioController.limpiarUbigeo()}" />
+							<f:selectItem itemLabel="Seleccione" itemValue="2" />
+							<f:selectItems var="item"
+								value="#{afiliarServicioController.afiliarServicioModel.distritos}"
+								itemLabel="#{item.descripcion}" itemValue="#{item.codDistrito}" />
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+
+					<div class="nota">
+						<span>NOTA : * DATOS OBLIGATORIOS</span>
+					</div>
+
+					<p:messages id="msgs1" showDetail="true" closable="true"
+						showSummary="false" />
+
+					<div class="dashed">
+						<p:commandButton id="agregCas" value="Siguiente"
+							style="float:right" onstart="PF('statusDialog').show()"
+							oncomplete="PF('statusDialog').hide()"
+							actionListener="#{afiliarServicioController.avanzarPaso()}"
+							update="formAfiliacion" styleClass="btnGrande" />
+					</div>
+				</h:panelGrid>
+
+				<h:panelGrid
+					rendered="#{afiliarServicioController.afiliarServicioModel.pasoActual==1}"
+					style="width:90%;">
+					<h3 style="text-align: center">Asignación de representante</h3>
+					<div class="dashed"></div>
+
+					<p:panelGrid columns="2" style="margin:auto;"
+						id="representantePanel">
+						<p:outputLabel for="tipo-documento" value="Tipo de Documento: " />
+						<h:panelGroup>
+							<p:inputText id="tipo-documento"
+								value="#{afiliarServicioController.afiliarServicioModel.tipoDocumentoRepresentanteLetras()}"
+								maxlength="60" disabled="true" />
+							<p:commandButton id="obtenerListaFirmantes" icon="ui-icon-search"
+								style="margin-left:10px;" onstart="PF('statusDialog').show()"
+								actionListener="#{afiliarServicioController.obtenerListaFirmantes()}"
+								update=":formSeleccionarRepresentante"
+								oncomplete="PF('SeleccionarRepresentanteWv').show();PF('statusDialog').hide()"
+								process="@this">
+							</p:commandButton>
+						</h:panelGroup>
+
+						<p:outputLabel for="nro-doc" value="N&uacute;mero de Documento: " />
+						<p:inputText id="nro-doc"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.numeroDocumento}"
+							maxlength="60" disabled="true" />
+
+
+						<p:outputLabel for="nombre" value="Apellidos y Nombres: " />
+						<p:inputText id="nombre" styleClass="input-grande"
+							style="width:400px"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.nombreCompleto()}"
+							maxlength="60" disabled="true" />
+
+						<p:outputLabel value="Correo Laboral * : " />
+						<p:inputText id="correo" styleClass="input-grande"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.correoLaboral}"
+							maxlength="40" required="true"
+							disabled="#{afiliarServicioController.afiliarServicioModel.empresa.representante == null}"
+							requiredMessage="Ingrese Correo Laboral"
+							validatorMessage="Formato inv&aacute;lido de correo laboral">
+							<p:ajax update="msgs2" event="keyup" />
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+
+						<p:outputLabel value="Correo Personal * : " />
+						<p:inputText id="correo-pers" styleClass="input-grande"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.correoPersonal}"
+							maxlength="40" required="true"
+							disabled="#{afiliarServicioController.afiliarServicioModel.empresa.representante == null}"
+							requiredMessage="Ingrese Correo Personal"
+							validatorMessage="Formato inv&aacute;lido de correo personal">
+							<p:ajax update="msgs2" event="keyup" />
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+
+
+						<p:outputLabel value="Discado Directo * : " />
+						<p:selectOneMenu id="discDirecto" style="width:246px"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.codigoTelefono}"
+							required="true" requiredMessage="Seleccione discado directo"
+							disabled="#{afiliarServicioController.afiliarServicioModel.empresa.representante == null}">
+
+							<p:ajax event="change"
+								update="formAfiliacion:discado,formAfiliacion:tel-fijo" />
+							<f:selectItem itemLabel="Seleccionar" />
+							<f:selectItems
+								value="#{afiliarServicioController.afiliarServicioModel.listaDiscadoDirecto}"
+								var="item" itemLabel="#{item.nombre}" itemValue="#{item.codigo}" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Tel&eacute;fono Laboral * : " />
+						<h:panelGroup>
+							<p:inputText id="discado" styleClass="input-chico"
+								value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.codigoTelefono}"
+								style="width:30px" maxlength="3" required="true" disabled="true"
+								requiredMessage="Ingrese Telefono Laboral" />
+							<h:outputLabel>- </h:outputLabel>
+
+							<p:inputText id="tel-fijo" styleClass="input-chico"
+								value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.telefonoFijo}"
+								maxlength="#{afiliarServicioController.afiliarServicioModel.empresa.representante.codigoTelefono=='01' ? '7' : '6'}"
+								onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+								required="true" requiredMessage="Ingrese Telefono Fijo"
+								disabled="#{afiliarServicioController.afiliarServicioModel.empresa.representante == null}"
+								validatorMessage="Tel&eacute;fono Fijo inv&aacute;lido, cantidad de d&iacute;gitos debe ser #{afiliarServicioController.afiliarServicioModel.empresa.representante.codigoTelefono=='01' ? '7' : '6'}">
+								<f:validateLength
+									minimum="#{afiliarServicioController.afiliarServicioModel.empresa.representante.codigoTelefono=='01' ? '7' : '6'}" />
+								<p:ajax update="msgs2" event="keyup" />
+							</p:inputText>
+						</h:panelGroup>
+
+						<p:outputLabel value="Anexo : " />
+						<p:inputText id="anexo" styleClass="input-chico"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.anexo}"
+							maxlength="6"
+							disabled="#{afiliarServicioController.afiliarServicioModel.empresa.representante == null}"
+							onkeypress="javascript:return jsValidarKey(event,/[0-9]/);">
+							<p:ajax update="msgs2" event="keyup" />
+						</p:inputText>
+
+						<p:outputLabel value="Operador M&oacute;vil * : " />
+						<p:selectOneMenu id="operadora" style="width:246px"
+							disabled="#{afiliarServicioController.afiliarServicioModel.empresa.representante == null}"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.operadora}"
+							required="true" requiredMessage="Seleccione operadora">
+							<p:ajax event="change" update="formAfiliacion:operadora" />
+							<f:selectItem itemLabel="Seleccionar" />
+							<f:selectItem itemLabel="Movistar" itemValue="M" />
+							<f:selectItem itemLabel="Claro" itemValue="C" />
+							<f:selectItem itemLabel="Entel" itemValue="E" />
+							<f:selectItem itemLabel="Bitel" itemValue="B" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="Tel&eacute;fono Personal * : " />
+						<p:inputText id="tel-movil" styleClass="input-chico"
+							value="#{afiliarServicioController.afiliarServicioModel.empresa.representante.telefonoMovil}"
+							maxlength="9" required="true"
+							disabled="#{afiliarServicioController.afiliarServicioModel.empresa.representante == null}"
+							onkeypress="javascript:return jsValidarKey(event,/[0-9]/);"
+							validatorMessage="Número de celular no válido"
+							requiredMessage="Ingrese un número celular">
+							<p:ajax update="msgs2" event="keyup" />
+							<f:validateRegex pattern="9[0-9]{8}" />
+						</p:inputText>
+
+					</p:panelGrid>
+
+					<div class="nota">
+						<span>NOTA : * DATOS OBLIGATORIOS</span>
+					</div>
+
+					<div class="messages" style="display: inline-block">
+						<p:messages id="msgs2" showDetail="true" closable="true"
+							showSummary="false" />
+					</div>
+
+					<div class="dashed">
+						<p:row>
+							<p:commandButton id="retroceder" value="Retroceder"
+								update="formAfiliacion" process="@this" style="float:left;"
+								styleClass="btnGrande" onstart="PF('statusDialog').show()"
+								oncomplete="PF('statusDialog').hide()"
+								actionListener="#{afiliarServicioController.retrocederPaso()}" />
+
+							<p:commandButton id="registrar" value="Registrar"
+								update="formAfiliacion" style="float:right;"
+								styleClass="btnGrande" onstart="PF('statusDialog').show()"
+								oncomplete="PF('statusDialog').hide()"
+								process="@this,tipo-documento,nro-doc,nombre,correo,correo-pers,discDirecto,tel-fijo,operadora,tel-movil,anexo"
+								actionListener="#{afiliarServicioController.mostrarConfirmacion()}" />
+						</p:row>
+					</div>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+
+		<p:dialog id="dialog-confirmar" modal="true" draggable="false"
+			resizable="false" header="Confirmar Guardar datos del Representante"
+			widgetVar="confirmarGuardarWv" position="center" showEffect="clip"
+			hideEffect="clip" onShow="confirmarGuardarWv.initPosition()"
+			closeOnEscape="true">
+			<h:form id="formConfirmarRepresentante">
+				<p:panelGrid id="panel-addDescheq" columns="2" style="widht:100%">
+					<p:outputLabel
+						value="¿Desea afiliar este servicio y guardar los datos del Representante?" />
+				</p:panelGrid>
+				<div class="botones">
+					<p:commandButton id="aceptar" value="Aceptar"
+						actionListener="#{afiliarServicioController.afiliarServicio()}"
+						update=":formAfiliacion" onstart="PF('statusDialog').show()"
+						oncomplete="$('#formConfirmarRepresentante\\:generarPdfBtn').click();PF('statusDialog').hide()" />
+
+					<p:commandLink id="generarPdfBtn" value="" style="display:none;"
+						onstart="PF('statusDialog').show()"
+						oncomplete="PF('statusDialog').hide()"
+						actionListener="#{afiliarServicioController.generarPdf()}"
+						ajax="false">
+					</p:commandLink>
+
+					<p:commandButton id="cancelar" value="Cancelar"
+						oncomplete="confirmarGuardarWv.hide()" update=":formAfiliacion" />
+				</div>
+			</h:form>
+		</p:dialog>
+
+		<p:dialog id="dialog-seleccionarRepresentante" modal="true"
+			header="Seleccionar Representante" draggable="false"
+			resizable="false" widgetVar="SeleccionarRepresentanteWv"
+			showEffect="clip" hideEffect="clip" position="center"
+			onShow="SeleccionarRepresentanteWv.initPosition()"
+			closeOnEscape="true">
+			<h:form id="formSeleccionarRepresentante">
+				<p:panelGrid id="panel-seleccionarRepresentante" columns="1"
+					style="widht:100%">
+					<p:dataTable id="tablaFirmantes" paginator="true"
+						paginatorPosition="bottom" rows="5"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+									 {NextPageLink} {LastPageLink} {RowsPerPageDropdown} "
+						currentPageReportTemplate="{currentPage} de {totalPages}"
+						rowsPerPageTemplate="5,10,15"
+						value="#{afiliarServicioController.afiliarServicioModel.listaFirmantes}"
+						selectionMode="single" var="firmante"
+						rowKey="#{firmante.numeroDocumento}"
+						emptyMessage="No hay representantes" style="width:100%">
+						<p:ajax event="rowSelect"
+							listener="#{afiliarServicioController.onRowSelect}"
+							update=":formAfiliacion"
+							oncomplete="PF('SeleccionarRepresentanteWv').hide()" />
+						<p:column headerText="Tipo documento"
+							style="width:20%;text-align:center; vertical-align: middle;">
+							<h:outputText
+								value="#{afiliarServicioController.afiliarServicioModel.tipoDocumentoFirmanteLetras(firmante.tipoDocumento)}" />
+						</p:column>
+						<p:column headerText="Numero documento"
+							style="width:30%;text-align:center; vertical-align: middle;">
+							<h:outputText value="#{firmante.numeroDocumento}" />
+						</p:column>
+						<p:column headerText="Nombre completo"
+							style="width:50%; text-align:left;vertical-align: middle;">
+							<h:outputText value="#{firmante.nombreCompleto()}" />
+						</p:column>
+					</p:dataTable>
+				</p:panelGrid>
+			</h:form>
+		</p:dialog>
+
+		<script type="text/javascript">
+			function validarMovil(event) {
+				if (jsValidarKey(event, /[0-9]/)) {
+					if ($("#formAfiliacion\\:tel-movil").val().length == 0) {
+						if (event.charCode == 57) {
+							return true;
+						}
+					} else {
+						return true;
+					}
+				}
+				return false;
+			}
+
+			function changeTipo(val) {
+				if (val == 1) {
+					$("#formusuario\\:nombre").attr("readonly", "true");
+				} else {
+					$("#formusuario\\:nombre").removeAttr("readonly");
+				}
+			}
+			function changenumdoc() {
+			}
+
+			$(document).ready(function() {
+				$("legend").attr("align", "left");
+			});
+
+			function activar(paso) {
+				document.getElementById('c' + paso).className = 'circulo c-activo';
+				document.getElementById('b' + paso).className = 'barra b-activo';
+
+			}
+
+			function desactivar(paso) {
+				document.getElementById('c' + paso).className = 'circulo c-inactivo';
+				document.getElementById('b' + paso).className = 'barra b-inactivo';
+
+			}
+		</script>
+
+	</ui:define>
+</ui:composition>

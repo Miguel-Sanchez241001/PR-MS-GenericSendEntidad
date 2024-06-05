@@ -1,0 +1,5 @@
+Servidor Linux 10.7.12.120 (solicitar usuario y password a Jeanette)
+
+
+cd /d02/programas/sh/sate/
+sh prg_sate_main.sh bn_sate bn_sate 10.7.12.120 4530 orades ftp_sate 123456a. 10.7.12.93 7587 bn-sate sate123 10.7.12.78 22

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launchConfiguration type="com.ibm.ws.ast.st.v61.core.batchProcessLaunchConfigurationType">
+<stringAttribute key="wasServerName" value="server1"/>
+<stringAttribute key="wasInstallPath" value="C:/Program Files (x86)/IBM/SDP70/runtimes/base_v61/profiles/AppSrv01"/>
+<stringAttribute key="launchMode" value="run"/>
+</launchConfiguration>

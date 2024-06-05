@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><servers>
+  <server baseServerName="server1" hostname="localhost" id="WebSphere Application Server v8.5 en localhost" isAutoConnectionTypeEnabled="true" isHotMethodReplace="true" isOptimiziedForDevelopmentEnv="true" isQuickBatchServerStart="true" isRunServerWithWorkspaceResources="true" isUTCEnabled="true" isZeroBinaryEnabled="true" name="WebSphere Application Server v8.5 en localhost" publish-trigger-type="publish-trigger-type-global" runtime-id="was.base.v85" securityPasswd="{xor}" server-type="com.ibm.ws.ast.st.v85.server.base" server-type-id="com.ibm.ws.ast.st.v85.server.base" serverConnectionType="IPC" serverIPCConnectorPortNum="10006" serverOrbBootstrapPortNum="10004" serverSoapConnectorPortNum="10005" start-timeout="300" stop-timeout="120" timestamp="41" webSphereProfileName="AppSrv1">
+    <list key="connectorTypeList" value0="IPC" value1="JSR160RMI" value2="RMI" value3="SOAP"/>
+    <list key="modules" value0="SATE_admEAR::org.eclipse.jst.jee.server:SATE_admEAR::jst.ear::6.0"/>
+  </server>
+</servers>

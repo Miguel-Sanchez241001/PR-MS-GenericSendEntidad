@@ -1,0 +1,142 @@
+package pe.bn.com.sate.ope.infrastructure.service.external.impl;
+
+import java.util.Date;
+
+import javax.xml.ws.BindingProvider;
+import javax.xml.ws.soap.SOAPFaultException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import pe.bn.com.sate.ope.infrastructure.exception.ExternalServiceIGWException;
+import pe.bn.com.sate.ope.infrastructure.exception.ServiceException;
+import pe.bn.com.sate.ope.infrastructure.service.external.ClaveService;
+import pe.bn.com.sate.ope.infrastructure.service.external.domain.interfaz.GatewayInterfaceProxy;
+import pe.bn.com.sate.ope.infrastructure.service.external.domain.interfaz.RequestGateway;
+import pe.bn.com.sate.ope.infrastructure.service.external.domain.interfaz.ResponseGateway;
+import pe.bn.com.sate.ope.infrastructure.service.external.domain.tramahost.BodySolicitud;
+import pe.bn.com.sate.ope.persistence.mapper.internal.ActividadMapper;
+import pe.bn.com.sate.ope.transversal.configuration.security.SecurityContextFacade;
+import pe.bn.com.sate.ope.transversal.dto.host.ClaveRespuesta;
+import pe.bn.com.sate.ope.transversal.dto.sate.Actividad;
+import pe.bn.com.sate.ope.transversal.dto.sate.Empresa;
+import pe.bn.com.sate.ope.transversal.dto.sate.Usuario;
+import pe.bn.com.sate.ope.transversal.util.DateFormaterUtil;
+import pe.bn.com.sate.ope.transversal.util.ServicioWebUtil;
+import pe.bn.com.sate.ope.transversal.util.StringUtil;
+import pe.bn.com.sate.ope.transversal.util.UsefulWebApplication;
+import pe.bn.com.sate.ope.transversal.util.constantes.ConstantesGenerales;
+import pe.bn.com.sate.ope.transversal.util.enums.TipoOperacionIG;
+
+@Service
+public class ClaveServiceImpl implements ClaveService {
+
+	@Autowired
+	ActividadMapper actividadMapper;
+
+	public ClaveRespuesta enviarSolicitud(Empresa empresa, Usuario usuario,
+			String claveActual, String claveNueva,
+			TipoOperacionIG tipoOperacionIG) {
+
+		try {
+
+			BodySolicitud solicitudInput = new BodySolicitud();
+			ClaveRespuesta claveRespuesta = null;
+			BodySolicitud bodyIn = new BodySolicitud();
+			BodySolicitud bodyOut = new BodySolicitud();
+
+			solicitudInput.cargarData(
+					tipoOperacionIG.getCod(),
+					"SATE",
+					DateFormaterUtil.getTimeStamp(),
+					"WEB",
+					SecurityContextFacade.obtenerIpCliente(),
+					empresa.getRuc(),
+					empresa.getCic(),
+					usuario.getTipoDocumento(),
+					usuario.getNumeroDocumento(),
+					claveActual,
+					claveNueva,
+					TipoOperacionIG
+							.esOperacionUsuarioAutenticado(tipoOperacionIG
+									.getCod()) ? UsefulWebApplication
+							.obtenerUsuario().getUsername() : usuario
+							.getUsername());
+
+			// Input
+			String head = StringUtil.enmascararTramaRecepcion(solicitudInput
+					.toString());
+			String trama = head + bodyIn;
+
+			GatewayInterfaceProxy proxy = new GatewayInterfaceProxy();
+			ServicioWebUtil.cambiarTiempoEspera("15", "15",
+					(BindingProvider) proxy._getDescriptor().getProxy());
+
+			RequestGateway peticion = new RequestGateway();
+			peticion.setLongitud(ConstantesGenerales.LONGITUD_DEFECTO);
+			peticion.setTransid(ConstantesGenerales.SEG_LOGIN_TRAN);
+			peticion.setDatos(trama);
+			peticion.setFiller("");
+
+			// respuesta
+			ResponseGateway respuesta = new ResponseGateway();
+			respuesta = proxy.enviarTramaConsulta(peticion);
+
+			if (("0000".equals(respuesta.getMsgno()))
+					&& (!respuesta.getDatos().equals(""))) {
+
+				BodySolicitud cabOut = new BodySolicitud();
+
+				if (respuesta.getDatos().length() < cabOut.LongitudTrama()) {
+					throw new Exception(
+							"La cabecera del cics soap no es válida.");
+				}
+
+				bodyOut.FillBobyOk(respuesta.getDatos() + respuesta.getMsgno()
+						+ respuesta.getMensaje());
+
+				claveRespuesta = new ClaveRespuesta();
+				claveRespuesta.setcError(bodyOut.getByTag("DFH-CERROR").trim());
+				claveRespuesta.setMsj(bodyOut.getByTag("DFH-MSJ").trim());
+
+			} else {
+				bodyOut.FillBobyHost(respuesta.getMsgno()
+						+ respuesta.getMensaje());
+				throw new ExternalServiceIGWException(bodyOut.getByTag(
+						"msgnoHost").trim()
+						+ " - " + bodyOut.getByTag("msjeHost").trim());
+			}
+
+			if (TipoOperacionIG.esOperacionUsuarioAutenticado(tipoOperacionIG
+					.getCod())) {
+				actualizarCuentaCambiarClave(claveRespuesta.getMsj());
+				CrearCuentaGenerarClave(claveRespuesta.getMsj(), usuario);
+			}
+
+			return claveRespuesta;
+		} catch (SOAPFaultException sfe) {
+			throw new ServiceException(
+					"El tiempo de espera termino, servicio IGW no responde.",
+					sfe);
+		} catch (Exception ex) {
+			throw new ExternalServiceIGWException(ex.getMessage(), ex);
+		}
+
+	}
+
+	private void actualizarCuentaCambiarClave(String mensaje) {
+		actividadMapper.insertarActividad(new Actividad(UsefulWebApplication
+				.obtenerUsuario().getId(), ConstantesGenerales.ACC_ACTUALIZAR,
+				ConstantesGenerales.FUNC_ACTUALIZAR_CUENTA, new Date(),
+				"Intento de cambio la clave: " + mensaje));
+	}
+
+	private void CrearCuentaGenerarClave(String mensaje, Usuario usuario) {
+		actividadMapper.insertarActividad(new Actividad(UsefulWebApplication
+				.obtenerUsuario().getId(), ConstantesGenerales.ACC_ACTUALIZAR,
+				ConstantesGenerales.FUNC_ACTUALIZAR_CUENTA, new Date(),
+				"Intento de generar la clave: " + mensaje + " al usuario : "
+						+ usuario.toString()));
+	}
+
+}

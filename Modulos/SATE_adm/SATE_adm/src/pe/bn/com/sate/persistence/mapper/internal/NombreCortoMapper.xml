@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.persistence.mapper.internal.NombreCortoMapper">
+
+	<resultMap id="mapNombreCorto" type="NombreCorto">
+		<result property="ruc" column="B09_NUM_RUC" />
+		<result property="nombre" column="B09_NOMBRE" />
+	</resultMap>
+
+</mapper>

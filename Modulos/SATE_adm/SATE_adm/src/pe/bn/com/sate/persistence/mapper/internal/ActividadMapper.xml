@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pe.bn.com.sate.persistence.mapper.internal.ActividadMapper">
+
+	<resultMap id="mapObtenerActividadesPorUsuario" type="Actividad">
+		<result property="idUsuario" column="B02_ID_USU"></result>
+		<result property="accion" column="B17_ACCION"></result>
+		<result property="funcionalidad" column="B17_FUNCIONALIDAD"></result>
+		<result property="fecha" column="B17_FECHA"></result>
+		<result property="registroCambios" column="B17_REGISTRO_CAMBIOS"></result>
+	</resultMap>
+
+</mapper>

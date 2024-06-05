@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/plantilla/plantilla.xhtml">
+
+
+	<ui:define name="metadata">
+	</ui:define>
+	<ui:define name="content">
+
+		<h2>CONSULTAR AFILIADOS/DESAFILIADOS</h2>
+
+		<h:form id="formConsultaEmpresa">
+
+
+			<p:panel style="margin: 15px; padding:20px;">
+				<h:panelGrid style="min-width:100%;text-align:center;">
+					<p:panelGrid columns="2" style="margin:0 auto 10px;">
+
+						<h:outputText value="Periodo desde: *" />
+						<h:panelGroup>
+							<p:calendar locale="es" id="maskFI" readonlyInput="true"
+								requiredMessage="Seleccione una fecha inicial" required="true"
+								navigator="true"
+								value="#{consultarEmpresaController.consultarEmpresaModel.fechaInicio}"
+								pattern="dd/MM/yy" mask="true">
+								<p:ajax event="dateSelect" update=":formConsultaEmpresa" />
+							</p:calendar>
+							<h:outputText value="hasta" style="margin:10px;" />
+							<p:calendar locale="es" id="maskFF" readonlyInput="true"
+								requiredMessage="Seleccione una fecha final" required="true"
+								value="#{consultarEmpresaController.consultarEmpresaModel.fechaFin}"
+								navigator="true" pattern="dd/MM/yy" mask="true">
+								<p:ajax event="dateSelect" update=":formConsultaEmpresa" />
+							</p:calendar>
+						</h:panelGroup>
+					</p:panelGrid>
+
+					<p:commandButton id="agregCas" value="Buscar"
+						actionListener="#{consultarEmpresaController.buscarEmpresas()}"
+						onstart="PF('statusDialog').show()"
+						oncomplete="PF('statusDialog').hide()"
+						update=":formConsultaEmpresa" styleClass="btnGrande" />
+
+					<p:messages autoUpdate="true" id="msgs" showDetail="true"
+						showSummary="false" closable="true" />
+
+					<div class="dashed"></div>
+
+					<p:panelGrid id="pgExporter" columns="2"
+						style="float:right;margin-right:2px;">
+						<h:commandLink
+							rendered="#{consultarEmpresaController.consultarEmpresaModel.busquedaRealizada}">
+							<img
+								src="#{request.contextPath}/resources/img/plantillaBN/iconos/xls.gif" />
+							<p:dataExporter type="xls" target="tablaEmpresa"
+								fileName="empresas" />
+						</h:commandLink>
+					</p:panelGrid>
+					<p:dataTable id="tablaEmpresa" paginator="true"
+						paginatorPosition="bottom" rows="5"
+						rendered="#{consultarEmpresaController.consultarEmpresaModel.busquedaRealizada}"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport}
+									 {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+						currentPageReportTemplate="{currentPage} de {totalPages}"
+						rowsPerPageTemplate="5,10,15"
+						value="#{consultarEmpresaController.consultarEmpresaModel.listaEmpresas}"
+						var="empresa"
+						emptyMessage="No hay empresas afiliados/desafiliados">
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Cuenta corriente" />
+							</f:facet>
+							<h:outputText value="#{empresa.cuentaCorriente}"
+								rendered="#{empresa.cuentaCorriente!=null}" />
+							<h:outputText value="-"
+								rendered="#{empresa.cuentaCorriente==null}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="RUC" />
+							</f:facet>
+							<h:outputText value="#{empresa.ruc}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Tipo" />
+							</f:facet>
+							<h:outputText
+								value="#{consultarEmpresaController.consultarEmpresaModel.tipoEmpresaLetras(empresa.tipo)}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Razon Social" />
+							</f:facet>
+							<h:outputText value="#{empresa.razonSocial}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Dirección" />
+							</f:facet>
+							<h:outputText value="#{empresa.direccion}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Fecha afiliación" />
+							</f:facet>
+							<h:outputText value="#{empresa.fechaAfiliacion}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy hh:mm:ss a" />
+							</h:outputText>
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Fecha desafiliación" />
+							</f:facet>
+							<h:outputText value="#{empresa.fechaDesafiliacion}"
+								rendered="#{empresa.fechaDesafiliacion!=null}">
+								<f:convertDateTime type="date" pattern="dd/MM/yyyy hh:mm:ss a" />
+							</h:outputText>
+							<h:outputText style="" value="-"
+								rendered="#{empresa.fechaDesafiliacion==null}" />
+						</p:column>
+
+						<p:column>
+							<f:facet name="header">
+								<h:outputText value="Motivo" />
+							</f:facet>
+							<h:outputText value="#{empresa.motivo}"
+								rendered="#{empresa.motivo!=null}" />
+							<h:outputText value="-" rendered="#{empresa.motivo==null}" />
+						</p:column>
+					</p:dataTable>
+
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?><java-wsdl-mapping version="1.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://www.ibm.com/webservices/xsd/j2ee_jaxrpc_mapping_1_1.xsd">
+    <package-mapping>
+        <package-type>pe.com.bn.comp.ws.bean</package-type>
+        <namespaceURI>http://bean.ws.comp.bn.com.pe</namespaceURI>
+    </package-mapping>
+    <package-mapping>
+        <package-type>pe.com.bn.comp.ws.service</package-type>
+        <namespaceURI>http://service.ws.comp.bn.com.pe</namespaceURI>
+    </package-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.GrupoParametro[]</java-type>
+        <root-type-qname xmlns:rtq="http://bean.ws.comp.bn.com.pe">rtq:ArrayOfGrupoParametro</root-type-qname>
+        <qname-scope>complexType</qname-scope>
+        <variable-mapping>
+            <java-variable-name>grupoParametro</java-variable-name>
+            <xml-element-name>GrupoParametro</xml-element-name>
+        </variable-mapping>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.Parametro</java-type>
+        <root-type-qname xmlns:rtq="http://bean.ws.comp.bn.com.pe">rtq:Parametro</root-type-qname>
+        <qname-scope>complexType</qname-scope>
+        <variable-mapping>
+            <java-variable-name>aliasParam</java-variable-name>
+            <xml-element-name>aliasParam</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>campoParam</java-variable-name>
+            <xml-element-name>campoParam</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>descripcionParam</java-variable-name>
+            <xml-element-name>descripcionParam</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>tipoParam</java-variable-name>
+            <xml-element-name>tipoParam</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>valorParam</java-variable-name>
+            <xml-element-name>valorParam</xml-element-name>
+        </variable-mapping>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>byte[]</java-type>
+        <root-type-qname xmlns:rtq="http://www.w3.org/2001/XMLSchema">rtq:base64Binary</root-type-qname>
+        <qname-scope>simpleType</qname-scope>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.ReturnProceso</java-type>
+        <root-type-qname xmlns:rtq="http://bean.ws.comp.bn.com.pe">rtq:ReturnProceso</root-type-qname>
+        <qname-scope>complexType</qname-scope>
+        <variable-mapping>
+            <java-variable-name>codigo</java-variable-name>
+            <xml-element-name>codigo</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>descripcion</java-variable-name>
+            <xml-element-name>descripcion</xml-element-name>
+        </variable-mapping>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.Parametro[]</java-type>
+        <anonymous-type-qname>http://bean.ws.comp.bn.com.pe:Parametro[0,unbounded]</anonymous-type-qname>
+        <qname-scope>complexType</qname-scope>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.GrupoParametro</java-type>
+        <root-type-qname xmlns:rtq="http://bean.ws.comp.bn.com.pe">rtq:GrupoParametro</root-type-qname>
+        <qname-scope>complexType</qname-scope>
+        <variable-mapping>
+            <java-variable-name>tipoGrupo</java-variable-name>
+            <xml-element-name>tipoGrupo</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>aliasDescripGrupo</java-variable-name>
+            <xml-element-name>aliasDescripGrupo</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>aliasGrupo</java-variable-name>
+            <xml-element-name>aliasGrupo</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>parametro</java-variable-name>
+            <xml-element-name>parametro</xml-element-name>
+        </variable-mapping>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>java.lang.String</java-type>
+        <root-type-qname xmlns:rtq="http://www.w3.org/2001/XMLSchema">rtq:string</root-type-qname>
+        <qname-scope>simpleType</qname-scope>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.GrupoParametro[]</java-type>
+        <anonymous-type-qname>http://bean.ws.comp.bn.com.pe:GrupoParametro[0,unbounded]</anonymous-type-qname>
+        <qname-scope>complexType</qname-scope>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.SistemaParametro</java-type>
+        <root-type-qname xmlns:rtq="http://bean.ws.comp.bn.com.pe">rtq:SistemaParametro</root-type-qname>
+        <qname-scope>complexType</qname-scope>
+        <variable-mapping>
+            <java-variable-name>aliasSistema</java-variable-name>
+            <xml-element-name>aliasSistema</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>grupoParametro</java-variable-name>
+            <xml-element-name>grupoParametro</xml-element-name>
+        </variable-mapping>
+        <variable-mapping>
+            <java-variable-name>proceso</java-variable-name>
+            <xml-element-name>proceso</xml-element-name>
+        </variable-mapping>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.Parametro[]</java-type>
+        <root-type-qname xmlns:rtq="http://bean.ws.comp.bn.com.pe">rtq:ArrayOfParametro</root-type-qname>
+        <qname-scope>complexType</qname-scope>
+        <variable-mapping>
+            <java-variable-name>parametro</java-variable-name>
+            <xml-element-name>Parametro</xml-element-name>
+        </variable-mapping>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.GrupoParametro[]</java-type>
+        <anonymous-type-qname>http://bean.ws.comp.bn.com.pe:ArrayOfGrupoParametro&gt;GrupoParametro[0,unbounded]</anonymous-type-qname>
+        <qname-scope>complexType</qname-scope>
+    </java-xml-type-mapping>
+    <java-xml-type-mapping>
+        <java-type>pe.com.bn.comp.ws.bean.Parametro[]</java-type>
+        <anonymous-type-qname>http://bean.ws.comp.bn.com.pe:ArrayOfParametro&gt;Parametro[0,unbounded]</anonymous-type-qname>
+        <qname-scope>complexType</qname-scope>
+    </java-xml-type-mapping>
+    <service-interface-mapping>
+        <service-interface>pe.com.bn.comp.ws.service.ParametroInterfazKeyService</service-interface>
+        <wsdl-service-name xmlns:sim="http://service.ws.comp.bn.com.pe">sim:ParametroInterfazKeyService</wsdl-service-name>
+        <port-mapping>
+            <port-name>ParametroInterfazKey</port-name>
+            <java-port-name>ParametroInterfazKey</java-port-name>
+        </port-mapping>
+    </service-interface-mapping>
+    <service-endpoint-interface-mapping>
+        <service-endpoint-interface>pe.com.bn.comp.ws.service.ParametroInterfazKey</service-endpoint-interface>
+        <wsdl-port-type xmlns:seimwpt="http://service.ws.comp.bn.com.pe">seimwpt:ParametroInterfazKey</wsdl-port-type>
+        <wsdl-binding xmlns:seimwb="http://service.ws.comp.bn.com.pe">seimwb:ParametroInterfazKeySoapBinding</wsdl-binding>
+        <service-endpoint-method-mapping>
+            <java-method-name>datoParametroService</java-method-name>
+            <wsdl-operation>datoParametroService</wsdl-operation>
+            <wrapped-element/>
+            <method-param-parts-mapping>
+                <param-position>0</param-position>
+                <param-type>java.lang.String</param-type>
+                <wsdl-message-mapping>
+                    <wsdl-message xmlns:mppm="http://service.ws.comp.bn.com.pe">mppm:datoParametroServiceRequest</wsdl-message>
+                    <wsdl-message-part-name>sistema</wsdl-message-part-name>
+                    <parameter-mode>IN</parameter-mode>
+                </wsdl-message-mapping>
+            </method-param-parts-mapping>
+            <method-param-parts-mapping>
+                <param-position>1</param-position>
+                <param-type>java.lang.String</param-type>
+                <wsdl-message-mapping>
+                    <wsdl-message xmlns:mppm="http://service.ws.comp.bn.com.pe">mppm:datoParametroServiceRequest</wsdl-message>
+                    <wsdl-message-part-name>cuenta</wsdl-message-part-name>
+                    <parameter-mode>IN</parameter-mode>
+                </wsdl-message-mapping>
+            </method-param-parts-mapping>
+            <method-param-parts-mapping>
+                <param-position>2</param-position>
+                <param-type>java.lang.String</param-type>
+                <wsdl-message-mapping>
+                    <wsdl-message xmlns:mppm="http://service.ws.comp.bn.com.pe">mppm:datoParametroServiceRequest</wsdl-message>
+                    <wsdl-message-part-name>semilla</wsdl-message-part-name>
+                    <parameter-mode>IN</parameter-mode>
+                </wsdl-message-mapping>
+            </method-param-parts-mapping>
+            <method-param-parts-mapping>
+                <param-position>3</param-position>
+                <param-type>byte[]</param-type>
+                <wsdl-message-mapping>
+                    <wsdl-message xmlns:mppm="http://service.ws.comp.bn.com.pe">mppm:datoParametroServiceRequest</wsdl-message>
+                    <wsdl-message-part-name>llave</wsdl-message-part-name>
+                    <parameter-mode>IN</parameter-mode>
+                </wsdl-message-mapping>
+            </method-param-parts-mapping>
+            <method-param-parts-mapping>
+                <param-position>4</param-position>
+                <param-type>java.lang.String</param-type>
+                <wsdl-message-mapping>
+                    <wsdl-message xmlns:mppm="http://service.ws.comp.bn.com.pe">mppm:datoParametroServiceRequest</wsdl-message>
+                    <wsdl-message-part-name>idUsuario</wsdl-message-part-name>
+                    <parameter-mode>IN</parameter-mode>
+                </wsdl-message-mapping>
+            </method-param-parts-mapping>
+            <wsdl-return-value-mapping>
+                <method-return-value>pe.com.bn.comp.ws.bean.SistemaParametro</method-return-value>
+                <wsdl-message xmlns:wrvm="http://service.ws.comp.bn.com.pe">wrvm:datoParametroServiceResponse</wsdl-message>
+                <wsdl-message-part-name>datoParametroServiceReturn</wsdl-message-part-name>
+            </wsdl-return-value-mapping>
+        </service-endpoint-method-mapping>
+    </service-endpoint-interface-mapping>
+</java-wsdl-mapping>
