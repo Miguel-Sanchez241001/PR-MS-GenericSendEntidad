@@ -45,6 +45,7 @@ public class Parametros {
     @ManyToOne
     @JoinColumn(name = "f02_interfazId")
     @JsonIgnore
+    @ToString.Exclude
     private Interfaces interfaces;
     
     
@@ -58,6 +59,7 @@ public class Parametros {
     @ManyToOne
     @JoinColumn(name = "f05_caracteristicasId")
     @JsonIgnore
+    @ToString.Exclude
     private Caracteristicas caracteristicas;
  	
  	

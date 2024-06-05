@@ -1,6 +1,7 @@
 package com.wgeneric.microservices.services.imp.operaciones;
 
 import com.wgeneric.microservices.models.entidades.*;
+import com.wgeneric.microservices.repositorios.PlantillaRepo;
 import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,6 +32,8 @@ public class Consulta implements Operacion{
     @Autowired
     private  EntidadRepo entidadRepo;
 
+    @Autowired
+    private PlantillaRepo plantillaRepo;
 
     @PostConstruct
     void init(){
@@ -54,15 +57,16 @@ public class Consulta implements Operacion{
 
             requestMS.setCodoper(Constantes.DICTIONARY.get(Constantes.COG_CONSULTA).toString());
 
-
+            List<Plantilla> listaPlan = plantillaRepo.findAll();
             Entidad entidad = entidadRepo.findById(requestMS.getIdentidad()).get();
             Interfaces interfaz =   entidad.getInterfaces().stream().filter(inter -> inter.getOperationType().toString() == requestMS.getCodoper())
                                                                     .findFirst()
                                                                     .orElse(null);
             List<Parametros> parametros = interfaz.getParametros();
-              Plantilla plantilla = interfaz.getPlantillas().stream().filter(planti -> planti.getPlantillaType()==PlantillaType.REQUEST ) 
+
+              Plantilla plantilla = plantillaRepo.findByInterfaces(interfaz).stream().filter(planti -> planti.getPlantillaType()==PlantillaType.REQUEST )
                                                                         .findFirst()
-                                                                        .orElse(null);
+                                                                .orElse(null);
 
            String url = verificarUrl(interfaz,plantilla,requestMS.getBody());
            interfaz.setEndpoint(url);
@@ -104,7 +108,7 @@ public class Consulta implements Operacion{
             if (parametro.getCaracteristicas().getCaracteristica().equals("URL")){
                 for (CamposTG camposTG: plantilla.getCamposTags()){
                     if (camposTG.getParam_campo().equals(parametro.getParametro())){
-                        String valorUrl = body.substring(camposTG.getPosicion_final(), camposTG.getPosicion_final());
+                        String valorUrl = body.substring(camposTG.getPosicion_inicial(), camposTG.getPosicion_final());
                         URL = URL.replace(camposTG.getParam_campo(),valorUrl);
                     }
                 }

@@ -38,7 +38,7 @@ public class JsonTramaAdapter implements TramaAdapter {
         JsonNode rootNode = objectMapper.readTree(jsonString);
  
         for (CamposTG camposTG : campos) {
-            String mensaje = trama.substring(camposTG.getPosicion_final(), camposTG.getPosicion_final());
+            String mensaje = trama.substring(camposTG.getPosicion_inicial(), camposTG.getPosicion_final());
             cambiarValores(rootNode,mensaje,camposTG);
         }
 

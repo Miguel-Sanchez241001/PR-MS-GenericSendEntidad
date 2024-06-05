@@ -7,17 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.wgeneric.microservices.models.entidades.enums.MethodType;
 import com.wgeneric.microservices.models.entidades.enums.OperationType;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,7 +35,8 @@ public class Interfaces {
 	    @ManyToOne
 	    @JoinColumn(name = "f01_entidadId")
 	    @JsonIgnore
-	    private Entidad entidad;
+		@ToString.Exclude
+		private Entidad entidad;
 
 
 	    @Enumerated(EnumType.STRING)
@@ -73,7 +64,7 @@ public class Interfaces {
 
 
 
-	    @OneToMany(mappedBy = "interfaces")
+	    @OneToMany(mappedBy = "interfaces", fetch = FetchType.EAGER)
 	    @JsonProperty(access = JsonProperty.Access.READ_ONLY) 
 	    private List<Plantilla> plantillas;
 	    
